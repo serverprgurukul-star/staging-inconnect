@@ -29,20 +29,20 @@ const categories = [
   {
     name: "NFC Cards",
     href: "/shop?category=nfc-cards",
-    image: "https://res.cloudinary.com/dem0bqs8e/image/upload/v1770396682/Untitled_design_5_kcpuvo.svg",
+    image: "https://souhaygiitgemoplvwnl.supabase.co/storage/v1/object/public/other%20images/Untitled_design_5_kcpuvo.svg",
     description: "View the collection",
   },
   {
     name: "3D NFC",
     href: "/shop?category=3d-nfc-products",
-    image: "https://res.cloudinary.com/dem0bqs8e/image/upload/v1770396856/Untitled_design_7_vo41br.svg",
+    image: "https://souhaygiitgemoplvwnl.supabase.co/storage/v1/object/public/other%20images/Untitled_design_7_vo41br.svg",
     description: "View the collection",
   },
   {
     name: "Standees",
     href: "/shop?category=standees",
     image:
-      "https://res.cloudinary.com/dem0bqs8e/image/upload/v1770396869/Untitled_design_6_lq3yh7.svg",
+      "https://souhaygiitgemoplvwnl.supabase.co/storage/v1/object/public/other%20images/Untitled_design_6_lq3yh7.svg",
     description: "View the collection",
   },
   {

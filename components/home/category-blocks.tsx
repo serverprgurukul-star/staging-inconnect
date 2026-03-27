@@ -34,7 +34,7 @@ const categories = [
         href: "/ai-review-card",
         cta: "Boost Reviews",
         bgColor: "bg-[#FF8026]",
-        image: "https://res.cloudinary.com/dem0bqs8e/image/upload/v1770397014/Untitled_design_1_yl75yn.svg",
+        image: "https://souhaygiitgemoplvwnl.supabase.co/storage/v1/object/public/other%20images/Untitled_design_1_yl75yn.svg",
     },
     {
         id: 3,
@@ -43,7 +43,7 @@ const categories = [
         href: "/shop?category=standees",
         cta: "View Designs",
         bgColor: "bg-[#FFBD40]",
-        image: "https://res.cloudinary.com/dem0bqs8e/image/upload/v1770397008/Untitled_design_kcs0mj.svg",
+        image: "https://souhaygiitgemoplvwnl.supabase.co/storage/v1/object/public/other%20images/Untitled_design_kcs0mj.svg",
         
     },
     {
@@ -53,7 +53,7 @@ const categories = [
         href: "/shop?category=3d-nfc-products",
         cta: "Shop Now",
         bgColor: "bg-[#01A48D]",
-        image: "https://res.cloudinary.com/dem0bqs8e/image/upload/v1770397011/Untitled_design_4_uh4pmf.svg",
+        image: "https://souhaygiitgemoplvwnl.supabase.co/storage/v1/object/public/other%20images/Untitled_design_4_uh4pmf.svg",
     },
 ];
 

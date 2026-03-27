@@ -269,7 +269,7 @@ export default function AdminDashboardPage() {
             {/* Main Stats Grid */}
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {/* Revenue Card */}
-                <div className="rounded-[10px] border border-zinc-200 bg-gradient-to-br from-teal-500 to-teal-600 p-5 text-white">
+                <div className="rounded-[10px] border border-zinc-200 bg-linear-to-br from-teal-500 to-teal-600 p-5 text-white">
                     <div className="flex items-center justify-between">
                         <span className="text-sm font-medium text-teal-100">
                             Total Revenue

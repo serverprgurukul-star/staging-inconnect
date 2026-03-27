@@ -6,8 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {
     Home,
-    ChevronLeft,
-    ChevronRight,
     Star,
     Scissors,
     Users,
@@ -178,7 +176,7 @@ export default function ProductPage({ params }: PageProps) {
                                                 onClick={() =>
                                                     setSelectedImage(index)
                                                 }
-                                                className={`relative w-14 h-14 lg:w-20 lg:h-20 rounded-[10px] overflow-hidden border-2 transition-all flex-shrink-0 ${
+                                                className={`relative w-14 h-14 lg:w-20 lg:h-20 rounded-[10px] overflow-hidden border-2 transition-all shrink-0 ${
                                                     selectedImage === index
                                                         ? "border-zinc-900"
                                                         : "border-transparent hover:border-zinc-300"
@@ -216,7 +214,7 @@ export default function ProductPage({ params }: PageProps) {
                                             onClick={() =>
                                                 setSelectedImage(index)
                                             }
-                                            className={`relative rounded-[10px] overflow-hidden border-2 transition-all flex-shrink-0 ${
+                                            className={`relative rounded-[10px] overflow-hidden border-2 transition-all shrink-0 ${
                                                 selectedImage === index
                                                     ? "border-zinc-900 ring-2 ring-zinc-900/20"
                                                     : "border-zinc-200 active:border-zinc-400"
@@ -417,10 +415,11 @@ export default function ProductPage({ params }: PageProps) {
                                 {/* Add to Cart Button */}
                                 <button
                                     onClick={handleAddToCart}
-                                    className="flex-1 h-10 sm:h-12 rounded-[10px] text-white font-semibold text-sm hover:opacity-90 transition-opacity"
+                                    disabled={product.stock_quantity <= 0}
+                                    className="flex-1 h-10 sm:h-12 rounded-[10px] text-white font-semibold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                                     style={{ backgroundColor: "#38bdf8" }}
                                 >
-                                    Add to cart
+                                    {product.stock_quantity > 0 ? "Add to cart" : "Out of stock"}
                                 </button>
                             </div>
 
@@ -441,7 +440,7 @@ export default function ProductPage({ params }: PageProps) {
                                             }
                                             className="w-full flex items-center gap-2.5 sm:gap-3 py-3.5 sm:py-4 text-left active:bg-zinc-100 transition-colors"
                                         >
-                                            <Scissors className="h-4 w-4 text-zinc-400 flex-shrink-0" />
+                                            <Scissors className="h-4 w-4 text-zinc-400 shrink-0" />
                                             <span className="font-medium text-zinc-900 text-sm sm:text-base">
                                                 {faq.question}
                                             </span>
@@ -517,7 +516,7 @@ export default function ProductPage({ params }: PageProps) {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
                         {/* Connect with anyone */}
                         <div className="flex gap-3 items-start">
-                            <div className="flex-shrink-0 w-8 h-8 sm:w-auto sm:h-auto flex items-center justify-center">
+                            <div className="shrink-0 w-8 h-8 sm:w-auto sm:h-auto flex items-center justify-center">
                                 <Users className="h-5 w-5 text-zinc-700" />
                             </div>
                             <div className="min-w-0">
@@ -533,7 +532,7 @@ export default function ProductPage({ params }: PageProps) {
 
                         {/* No app required */}
                         <div className="flex gap-3 items-start">
-                            <div className="flex-shrink-0 w-8 h-8 sm:w-auto sm:h-auto flex items-center justify-center">
+                            <div className="shrink-0 w-8 h-8 sm:w-auto sm:h-auto flex items-center justify-center">
                                 <Smartphone className="h-5 w-5 text-zinc-700" />
                             </div>
                             <div className="min-w-0">
@@ -549,7 +548,7 @@ export default function ProductPage({ params }: PageProps) {
 
                         {/* iOS & Android compatible */}
                         <div className="flex gap-3 items-start">
-                            <div className="flex-shrink-0 w-8 h-8 sm:w-auto sm:h-auto flex items-center justify-center">
+                            <div className="shrink-0 w-8 h-8 sm:w-auto sm:h-auto flex items-center justify-center">
                                 <div className="flex flex-col gap-0.5">
                                     <Apple className="h-3 w-3 text-zinc-700" />
                                     <Tablet className="h-3 w-3 text-zinc-700" />
@@ -567,7 +566,7 @@ export default function ProductPage({ params }: PageProps) {
 
                         {/* Built to last */}
                         <div className="flex gap-3 items-start">
-                            <div className="flex-shrink-0 w-8 h-8 sm:w-auto sm:h-auto flex items-center justify-center">
+                            <div className="shrink-0 w-8 h-8 sm:w-auto sm:h-auto flex items-center justify-center">
                                 <Shield className="h-5 w-5 text-zinc-700" />
                             </div>
                             <div className="min-w-0">
@@ -611,10 +610,11 @@ export default function ProductPage({ params }: PageProps) {
                     {/* Add to Cart Button */}
                     <button
                         onClick={handleAddToCart}
-                        className="flex-1 h-11 rounded-[10px] text-white font-semibold text-sm active:opacity-90 transition-opacity"
+                        disabled={product.stock_quantity <= 0}
+                        className="flex-1 h-11 rounded-[10px] text-white font-semibold text-sm active:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                         style={{ backgroundColor: "#38bdf8" }}
                     >
-                        Add to cart • {formatPrice(product.price * quantity)}
+                        {product.stock_quantity > 0 ? `Add to cart • ${formatPrice(product.price * quantity)}` : "Out of stock"}
                     </button>
                 </div>
             </div>

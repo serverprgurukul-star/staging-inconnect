@@ -158,7 +158,26 @@ export default function CheckoutPage() {
     const createOrder = async () => {
         const supabase = createClient();
 
-        // Create or find customer
+        // Check stock for all items first
+        for (const item of items) {
+            const { data: product, error: productError } = await supabase
+                .from("products")
+                .select("stock_quantity, name")
+                .eq("id", item.productId)
+                .single();
+
+            if (productError || !product) {
+                throw new Error(`Failed to verify stock for ${item.name}`);
+            }
+
+            if (product.stock_quantity < item.quantity) {
+                throw new Error(
+                    `Insufficient stock for ${item.name}. Available: ${product.stock_quantity}`
+                );
+            }
+        }
+
+        // Create or find customer (existing logic)
         const { data: customer, error: customerError } = await supabase
             .from("customers")
             .insert([
@@ -236,6 +255,27 @@ export default function CheckoutPage() {
         if (itemsError) {
             console.error("Order items error:", itemsError);
             throw new Error(`Order items failed: ${itemsError.message}`);
+        }
+
+        // Decrement stock for each product
+        for (const item of items) {
+            const { data: product } = await supabase
+                .from("products")
+                .select("stock_quantity")
+                .eq("id", item.productId)
+                .single();
+
+            if (product) {
+                await supabase
+                    .from("products")
+                    .update({
+                        stock_quantity: Math.max(
+                            0,
+                            product.stock_quantity - item.quantity,
+                        ),
+                    })
+                    .eq("id", item.productId);
+            }
         }
 
         // Save card details (mandatory)

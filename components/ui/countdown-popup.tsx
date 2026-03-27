@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 
-const TARGET_DATE = new Date("March 28, 2026 19:00:00").getTime();
+const TARGET_DATE = new Date("March 22, 2026 19:00:00").getTime();
 
 interface TimeLeft {
   days: number;

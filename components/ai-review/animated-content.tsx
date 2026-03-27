@@ -138,20 +138,27 @@ export function AIReviewAnimatedContent({ products }: AIReviewAnimatedContentPro
             transition={{ duration: 0.6 }}
             className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] overflow-hidden rounded-b-[10px]"
           >
-            {/* Video Background */}
-            <video
-              className="absolute inset-0 h-full w-full object-cover"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-            >
-              <source
-                src="https://res.cloudinary.com/dem0bqs8e/video/upload/v1770398448/copy_2E63D710-593B-4DD1-9A1A-C8BB3E8880B3_fn54bl_tm3iwh.mp4"
-                type="video/mp4"
+            {/* Banner Background */}
+            <div className="absolute inset-0 h-full w-full">
+              {/* <video
+                className="absolute inset-0 h-full w-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+              >
+                <source
+                  src="https://res.cloudinary.com/dem0bqs8e/video/upload/v1770398448/copy_2E63D710-593B-4DD1-9A1A-C8BB3E8880B3_fn54bl_tm3iwh.mp4"
+                  type="video/mp4"
+                />
+              </video> */}
+              <img
+                src="https://souhaygiitgemoplvwnl.supabase.co/storage/v1/object/public/other%20images/IMG_0303_e6l9fd.jpg" // Placeholder path, user will add the real image later
+                alt="AI Review Card Banner"
+                className="h-full w-full object-cover"
               />
-            </video>
+            </div>
             <div className="bg-black absolute inset-0 opacity-50" />
 
             <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 sm:px-6">
@@ -198,7 +205,7 @@ export function AIReviewAnimatedContent({ products }: AIReviewAnimatedContentPro
                 Reviews are <span className="text-zinc-400">broken.</span>
               </h2>
               <p className="mt-3 text-sm sm:text-base text-zinc-500 max-w-xl mx-auto">
-                Traditional review collection doesn't work. Here's how AI
+                Traditional review collection doesn&apos;t work. Here&apos;s how AI
                 changes everything.
               </p>
             </motion.div>
@@ -228,7 +235,7 @@ export function AIReviewAnimatedContent({ products }: AIReviewAnimatedContentPro
                       transition={{ delay: index * 0.1 }}
                       className="flex items-center gap-3 bg-white/50 rounded-[10px] px-4 py-3"
                     >
-                      <X className="h-4 w-4 text-red-500 flex-shrink-0" />
+                      <X className="h-4 w-4 text-red-500 shrink-0" />
                       <span className="text-sm text-zinc-700">{item}</span>
                     </motion.div>
                   ))}
@@ -257,7 +264,7 @@ export function AIReviewAnimatedContent({ products }: AIReviewAnimatedContentPro
                       transition={{ delay: index * 0.1 }}
                       className="flex items-center gap-3 bg-white/10 rounded-[10px] px-4 py-3"
                     >
-                      <Check className="h-4 w-4 text-sky-400 flex-shrink-0" />
+                      <Check className="h-4 w-4 text-sky-400 shrink-0" />
                       <span className="text-sm text-zinc-300">{item}</span>
                     </motion.div>
                   ))}
@@ -352,7 +359,7 @@ export function AIReviewAnimatedContent({ products }: AIReviewAnimatedContentPro
                 variants={staggerContainer}
                 className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4 lg:gap-6"
               >
-                {products.map((product, index) => (
+                {products.map((product) => (
                   <motion.div
                     key={product.id}
                     variants={fadeInUp}
