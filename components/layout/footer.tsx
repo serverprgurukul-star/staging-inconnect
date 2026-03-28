@@ -204,42 +204,7 @@ export function Footer() {
                     <img src="/Logo_3.svg" className="w-[140px] sm:w-[160px] md:w-[300px]" alt="Instant Connect" />
 
                     {/* BeezTech Advertisement Card */}
-                    <a
-                        href="https://www.beeztech.studio/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full max-w-[240px] sm:max-w-md md:max-w-sm"
-                    >
-                        <div className="relative w-full h-[90px] sm:h-[110px] rounded-[10px] overflow-hidden bg-[#FF8026] flex items-center p-0 transition-transform duration-300 active:scale-95">
-                            {/* Left Side: Icon/Logo Container */}
-                            <div className="w-1/3 sm:w-1/4 flex items-center justify-center p-2">
-                                <img
-                                    src="/Icon.svg"
-                                    alt="BeezTech Icon"
-                                    className="w-12 sm:w-16 md:w-16 lg:w-16 h-auto transition-transform duration-500 group-hover:rotate-12"
-                                />
-                            </div>
-
-                            {/* Right Side: Content Container */}
-                            <div className="w-2/3 sm:w-3/4  px-3 sm:px-2 flex flex-col justify-center items-center text-center space-y-1.5 sm:space-y-2">
-                                <h4 className="text-white font-black text-[10px] sm:text-xs md:text-sm italic leading-tight tracking-tight uppercase">
-                                    Looking for a <br className="sm:hidden" />
-                                    <span className="text-black/90">
-                                        custom website?
-                                    </span>
-                                </h4>
-
-                                <button className="bg-white w-full cursor-pointer max-w-[120px] sm:max-w-[170px] text-black px-1 py-1.5 sm:py-2 rounded-[5px] text-[8px] sm:text-[10px] md:text-xs font-black uppercase tracking-widest shadow-md transition-all group-hover:bg-black group-hover:text-white">
-                                    Contact Beeztech
-                                </button>
-                            </div>
-
-                            {/* Subtle Decorative Element */}
-                            <div className="absolute top-0 right-0 p-2 opacity-20">
-                                <div className="w-8 h-8 rounded-[10px] border-2 border-white" />
-                            </div>
-                        </div>
-                    </a>
+                   
                 </div>
 
                 {/* --- LEGAL --- */}
