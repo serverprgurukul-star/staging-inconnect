@@ -190,36 +190,36 @@ export function CountdownPopup() {
 
   if (!isClient || isAdminPage) return null;
 
-  // Pre-launch: render a full-page takeover that cannot be removed via DevTools
-  // (removing the element just shows the blurred background — no content underneath)
+  // Pre-launch: backdrop and content are SEPARATE sibling divs.
+  // Hiding one via DevTools still leaves the other covering the page.
   if (!launched && timeLeft) {
     return (
-      <div
-        style={{ position: "fixed", inset: 0, zIndex: 99999 }}
-        onContextMenu={(e) => e.preventDefault()}
-      >
-        {/* Backdrop — covers everything */}
+      <>
+        {/* Backdrop — separate div, hiding content div still leaves this black wall */}
         <div
           style={{
-            position: "absolute",
+            position: "fixed",
             inset: 0,
+            zIndex: 99998,
             background: "rgba(0,0,0,0.99)",
             backdropFilter: "blur(12px)",
             WebkitBackdropFilter: "blur(12px)",
           }}
+          onContextMenu={(e) => e.preventDefault()}
         />
 
-        {/* Content */}
+        {/* Content — separate div at higher z-index */}
         <div
           style={{
-            position: "relative",
-            zIndex: 1,
+            position: "fixed",
+            inset: 0,
+            zIndex: 99999,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            height: "100%",
             padding: "1rem",
           }}
+          onContextMenu={(e) => e.preventDefault()}
         >
           <div className="w-full max-w-2xl bg-[#0A0A0A] rounded-3xl p-8 sm:p-12 shadow-2xl border border-white/10 text-center">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-8 sm:mb-12">
@@ -241,7 +241,7 @@ export function CountdownPopup() {
             </p>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 

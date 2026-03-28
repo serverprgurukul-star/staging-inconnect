@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import { CartProvider } from "@/contexts/cart-context";
 import { LayoutWrapper } from "@/components/layout/layout-wrapper";
-import { CountdownPopup } from "@/components/ui/countdown-popup";
 import "./globals.css";
 import { Roboto } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
@@ -54,8 +53,7 @@ export default function RootLayout({
       >
         <CartProvider>
           <Analytics />
-          <CountdownPopup />
-          <LayoutWrapper>{children}</LayoutWrapper>
+<LayoutWrapper>{children}</LayoutWrapper>
           <Toaster
             position="bottom-right"
             toastOptions={{

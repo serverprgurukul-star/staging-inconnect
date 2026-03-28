@@ -98,7 +98,7 @@ export async function middleware(request: NextRequest) {
     )
   }
 
-  // Block shop/checkout/payment routes before launch
+  // Block everything before launch
   if (isPreLaunch()) {
     // Block API routes — return 503
     if (PRE_LAUNCH_BLOCKED_APIS.some((p) => pathname.startsWith(p))) {
@@ -108,12 +108,26 @@ export async function middleware(request: NextRequest) {
       )
     }
 
-    // Block frontend pages — redirect to home
+    // Block frontend pages — redirect to coming-soon
     if (PRE_LAUNCH_BLOCKED_PAGES.some((p) => pathname.startsWith(p))) {
       const url = request.nextUrl.clone()
-      url.pathname = '/'
+      url.pathname = '/coming-soon'
       return NextResponse.redirect(url)
     }
+
+    // Redirect homepage to coming-soon
+    if (pathname === '/') {
+      const url = request.nextUrl.clone()
+      url.pathname = '/coming-soon'
+      return NextResponse.redirect(url)
+    }
+  }
+
+  // After launch, redirect coming-soon back to homepage
+  if (!isPreLaunch() && pathname === '/coming-soon') {
+    const url = request.nextUrl.clone()
+    url.pathname = '/'
+    return NextResponse.redirect(url)
   }
 
   // Only run Supabase auth session check for admin routes

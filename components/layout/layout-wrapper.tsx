@@ -9,9 +9,9 @@ import { Preloader } from './preloader'
 export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const isAdmin = pathname?.startsWith('/masterman')
+  const isComingSoon = pathname === '/coming-soon'
 
-  if (isAdmin) {
-    // Admin pages - no header/footer
+  if (isAdmin || isComingSoon) {
     return <>{children}</>
   }
 
