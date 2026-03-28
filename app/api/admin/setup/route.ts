@@ -8,8 +8,9 @@ export async function POST(request: Request) {
   try {
     const { email, password, secretKey } = await request.json()
 
-    // Simple protection - require a secret key
-    if (secretKey !== process.env.ADMIN_SETUP_KEY && secretKey !== 'setup-admin-2024') {
+    // Require the ADMIN_SETUP_KEY env variable - no hardcoded fallback
+    const setupKey = process.env.ADMIN_SETUP_KEY
+    if (!setupKey || secretKey !== setupKey) {
       return NextResponse.json({ error: 'Invalid setup key' }, { status: 401 })
     }
 

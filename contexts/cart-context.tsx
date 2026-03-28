@@ -2,7 +2,6 @@
 
 import { createContext, useContext, useEffect, useState, useCallback } from 'react'
 import toast from 'react-hot-toast'
-import { createClient } from '@/utils/supabase/client'
 
 export interface CartItem {
   productId: string
@@ -160,7 +159,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0)
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
-  // Coupon functions
+  // Coupon functions - validated server-side to prevent manipulation
   const applyCoupon = useCallback(async (code: string): Promise<boolean> => {
     if (!code.trim()) {
       toast.error('Please enter a coupon code')
@@ -170,33 +169,26 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setIsApplyingCoupon(true)
 
     try {
-      const supabase = createClient()
-      const { data: coupon, error } = await supabase
-        .from('coupons')
-        .select('*')
-        .eq('code', code.toUpperCase())
-        .eq('is_active', true)
-        .single()
+      const response = await fetch('/api/coupons/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: code.trim(), subtotal }),
+      })
 
-      if (error || !coupon) {
-        toast.error('Invalid coupon code')
-        return false
-      }
+      const data = await response.json()
 
-      if (coupon.min_order_amount && subtotal < coupon.min_order_amount) {
-        const formatPrice = (price: number) =>
-          new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(price)
-        toast.error(`Minimum order amount is ${formatPrice(coupon.min_order_amount)}`)
+      if (!response.ok) {
+        toast.error(data.error || 'Invalid coupon code')
         return false
       }
 
       setAppliedCoupon({
-        code: coupon.code,
-        discount: coupon.discount_value,
-        type: coupon.discount_type,
-        minOrderAmount: coupon.min_order_amount,
+        code: data.code,
+        discount: data.discount,
+        type: data.type,
+        minOrderAmount: data.minOrderAmount,
       })
-      toast.success(`Coupon "${coupon.code}" applied!`)
+      toast.success(`Coupon "${data.code}" applied!`)
       return true
     } catch {
       toast.error('Failed to apply coupon')
