@@ -102,20 +102,32 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     let isUpdate = false
     let blocked = false
+    let blockReason = ''
 
     setItems((prev) => {
       const existingIndex = prev.findIndex((i) => i.productId === item.productId)
 
       if (existingIndex > -1) {
-        // Featured products: max quantity 1
+        // Same featured product already in cart — qty capped at 1
         if (item.isFeatured) {
           blocked = true
+          blockReason = 'already-in-cart'
           return prev
         }
         isUpdate = true
         const updated = [...prev]
         updated[existingIndex].quantity += quantity
         return updated
+      }
+
+      // Adding a new featured product — block if any featured item already exists
+      if (item.isFeatured) {
+        const hasFeatured = prev.some((i) => i.isFeatured)
+        if (hasFeatured) {
+          blocked = true
+          blockReason = 'featured-exists'
+          return prev
+        }
       }
 
       // Featured products always added with qty 1
@@ -125,7 +137,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     setTimeout(() => {
       if (blocked) {
-        toast.error('Only 1 unit allowed per featured product')
+        if (blockReason === 'featured-exists') {
+          toast.error('Only 1 featured product allowed per order. Remove the existing one first.')
+        } else {
+          toast.error('Only 1 unit allowed per featured product')
+        }
       } else {
         toast.success(isUpdate ? `Updated ${item.name} quantity` : `Added ${item.name} to cart`)
       }

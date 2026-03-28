@@ -143,8 +143,9 @@ export default function ProductPage({ params }: PageProps) {
 
     const isOutOfStock = product.stock_quantity <= 0;
     const isInCart = items.some((i) => i.productId === product.id);
-    const isFeaturedInCart = product.is_featured && isInCart;
-    const addDisabled = isOutOfStock || isFeaturedInCart;
+    const anyFeaturedInCart = items.some((i) => i.isFeatured);
+    const isFeaturedBlocked = product.is_featured && anyFeaturedInCart;
+    const addDisabled = isOutOfStock || isFeaturedBlocked;
 
     const handleAddToCart = () => {
         if (addDisabled) return;
@@ -397,8 +398,10 @@ export default function ProductPage({ params }: PageProps) {
                                 >
                                     {isOutOfStock
                                         ? "Out of stock"
-                                        : isFeaturedInCart
+                                        : isInCart
                                         ? "Added to cart"
+                                        : isFeaturedBlocked
+                                        ? "Limit reached"
                                         : "Add to cart"}
                                 </button>
                             </div>
@@ -573,8 +576,10 @@ export default function ProductPage({ params }: PageProps) {
                 >
                     {isOutOfStock
                         ? "Out of stock"
-                        : isFeaturedInCart
+                        : isInCart
                         ? "Added to cart"
+                        : isFeaturedBlocked
+                        ? "Limit reached"
                         : `Add to cart • ${formatPrice(product.price)}`}
                 </button>
             </div>

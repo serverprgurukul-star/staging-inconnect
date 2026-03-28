@@ -25,8 +25,10 @@ export function ProductCard({ product, categorySlug, noBg, tag }: ProductCardPro
 
     const isOutOfStock = product.stock_quantity <= 0;
     const isInCart = items.some((i: CartItem) => i.productId === product.id);
-    const isFeaturedInCart = product.is_featured && isInCart;
-    const cartDisabled = isOutOfStock || isFeaturedInCart;
+    // Block if this featured product is already in cart, OR if any other featured product is in cart
+    const anyFeaturedInCart = items.some((i: CartItem) => i.isFeatured);
+    const isFeaturedBlocked = product.is_featured && anyFeaturedInCart;
+    const cartDisabled = isOutOfStock || isFeaturedBlocked;
 
     const productUrl = `/product/${product.slug}`;
 
@@ -145,7 +147,7 @@ export function ProductCard({ product, categorySlug, noBg, tag }: ProductCardPro
                                 className="flex items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-semibold text-white shadow-lg hover:bg-zinc-800 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                             >
                                 <ShoppingCart className="h-4 w-4" />
-                                {isFeaturedInCart ? "Added" : "Add to Cart"}
+                                {isInCart ? "Added" : isFeaturedBlocked ? "Limit reached" : "Add to Cart"}
                             </button>
                         </div>
                     )}
