@@ -17,13 +17,25 @@ interface TimeLeft {
 
 // Fetch server time once, then tick locally from that anchor.
 // This prevents client clock manipulation (setting system time forward).
+const SESSION_OFFSET_KEY = 'ic_time_offset'
+
 async function fetchServerTime(): Promise<number> {
   try {
-    const res = await fetch('/api/time', { cache: 'no-store' });
+    // Reuse cached offset from this session — avoids re-fetching on every page navigation
+    const cached = sessionStorage.getItem(SESSION_OFFSET_KEY)
+    if (cached !== null) {
+      return Date.now() + parseFloat(cached)
+    }
+
+    const clientBefore = Date.now();
+    const res = await fetch('/api/time');
     const { now } = await res.json();
-    return now as number;
+    const clientAfter = Date.now();
+    const offset = now - (clientBefore + clientAfter) / 2;
+
+    sessionStorage.setItem(SESSION_OFFSET_KEY, String(offset))
+    return Date.now() + offset;
   } catch {
-    // Fallback to client time only if server unreachable
     return Date.now();
   }
 }
@@ -94,17 +106,20 @@ export function CountdownPopup() {
     let timer: NodeJS.Timeout;
 
     async function init() {
-      // Fetch server time once; compute offset so subsequent ticks stay accurate
-      const clientBefore = Date.now();
+      // If already past launch time by client clock, skip fetch entirely
+      if (Date.now() >= LAUNCH_TIMESTAMP) {
+        setLaunched(true);
+        setShowCelebration(false);
+        setIsClient(true);
+        return;
+      }
+
+      // fetchServerTime handles sessionStorage caching — no repeated hits on navigation
       const serverNow = await fetchServerTime();
-      const clientAfter = Date.now();
-      // Use midpoint of request to compensate for network latency
-      const clientNow = (clientBefore + clientAfter) / 2;
-      serverOffsetMs.current = serverNow - clientNow;
+      serverOffsetMs.current = serverNow - Date.now();
 
       setIsClient(true);
 
-      // Calculate time using server-anchored clock
       const getServerNow = () => Date.now() + serverOffsetMs.current;
       const calcWithServerTime = (): TimeLeft | null => {
         const diff = LAUNCH_TIMESTAMP - getServerNow();
