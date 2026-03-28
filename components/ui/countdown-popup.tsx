@@ -5,14 +5,27 @@ import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 
-// March 28, 2026 7:00 PM IST = 13:30 UTC
-const LAUNCH_TIMESTAMP = new Date("2026-03-28T13:30:00.000Z").getTime();
+// Launch time from env — NEXT_PUBLIC_LAUNCH_TIMESTAMP (e.g. 2026-03-28T13:30:00.000Z)
+const LAUNCH_TIMESTAMP = new Date(process.env.NEXT_PUBLIC_LAUNCH_TIMESTAMP!).getTime();
 
 interface TimeLeft {
   days: number;
   hours: number;
   minutes: number;
   seconds: number;
+}
+
+// Fetch server time once, then tick locally from that anchor.
+// This prevents client clock manipulation (setting system time forward).
+async function fetchServerTime(): Promise<number> {
+  try {
+    const res = await fetch('/api/time', { cache: 'no-store' });
+    const { now } = await res.json();
+    return now as number;
+  } catch {
+    // Fallback to client time only if server unreachable
+    return Date.now();
+  }
 }
 
 const TimeUnit = ({ label, value }: { label: string; value: number }) => (
@@ -32,16 +45,6 @@ const TimeUnit = ({ label, value }: { label: string; value: number }) => (
   </div>
 );
 
-function calculateTimeLeft(): TimeLeft | null {
-  const diff = LAUNCH_TIMESTAMP - Date.now();
-  if (diff <= 0) return null;
-  return {
-    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-    minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-    seconds: Math.floor((diff % (1000 * 60)) / 1000),
-  };
-}
 
 export function CountdownPopup() {
   const pathname = usePathname();
@@ -50,8 +53,12 @@ export function CountdownPopup() {
 
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   const [launched, setLaunched] = useState(false);
+  const [showCelebration, setShowCelebration] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const confettiDone = useRef(false);
+  // serverTimeOffset = serverNow - clientNow at sync time
+  // Added to Date.now() on every tick so client clock changes have no effect
+  const serverOffsetMs = useRef(0);
 
   // Disable right-click and common DevTools shortcuts
   useEffect(() => {
@@ -80,35 +87,65 @@ export function CountdownPopup() {
     };
   }, [isAdminPage]);
 
-  // Countdown tick
+  // Countdown tick — anchored to server time to prevent client clock manipulation
   useEffect(() => {
     if (isAdminPage) return;
 
-    setIsClient(true);
-    const initial = calculateTimeLeft();
-    if (!initial) {
-      setLaunched(true);
-    } else {
+    let timer: NodeJS.Timeout;
+
+    async function init() {
+      // Fetch server time once; compute offset so subsequent ticks stay accurate
+      const clientBefore = Date.now();
+      const serverNow = await fetchServerTime();
+      const clientAfter = Date.now();
+      // Use midpoint of request to compensate for network latency
+      const clientNow = (clientBefore + clientAfter) / 2;
+      serverOffsetMs.current = serverNow - clientNow;
+
+      setIsClient(true);
+
+      // Calculate time using server-anchored clock
+      const getServerNow = () => Date.now() + serverOffsetMs.current;
+      const calcWithServerTime = (): TimeLeft | null => {
+        const diff = LAUNCH_TIMESTAMP - getServerNow();
+        if (diff <= 0) return null;
+        return {
+          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((diff % (1000 * 60)) / 1000),
+        };
+      };
+
+      const initial = calcWithServerTime();
+      if (!initial) {
+        setLaunched(true);
+        setShowCelebration(false);
+        return;
+      }
+
       setTimeLeft(initial);
+
+      timer = setInterval(() => {
+        const t = calcWithServerTime();
+        if (!t) {
+          setLaunched(true);
+          setShowCelebration(true);
+          setTimeLeft(null);
+          clearInterval(timer);
+        } else {
+          setTimeLeft(t);
+        }
+      }, 1000);
     }
 
-    const timer = setInterval(() => {
-      const t = calculateTimeLeft();
-      if (!t) {
-        setLaunched(true);
-        setTimeLeft(null);
-        clearInterval(timer);
-      } else {
-        setTimeLeft(t);
-      }
-    }, 1000);
-
+    init();
     return () => clearInterval(timer);
   }, [isAdminPage]);
 
-  // Confetti + redirect after launch
+  // Confetti + dismiss after live countdown ends
   useEffect(() => {
-    if (!launched || confettiDone.current || isAdminPage) return;
+    if (!showCelebration || confettiDone.current || isAdminPage) return;
     confettiDone.current = true;
 
     const duration = 3000;
@@ -124,9 +161,17 @@ export function CountdownPopup() {
       confetti({ ...defaults, particleCount: count, origin: { x: rand(0.7, 0.9), y: Math.random() - 0.2 } });
     }, 250);
 
-    // Refresh page after celebration so middleware re-evaluates and unblocks routes
-    setTimeout(() => router.refresh(), 5000);
-  }, [launched, isAdminPage, router]);
+    // Dismiss celebration modal and reload after confetti
+    const dismissTimer = setTimeout(() => {
+      setShowCelebration(false);
+      router.refresh();
+    }, 4000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(dismissTimer);
+    };
+  }, [showCelebration, isAdminPage, router]);
 
   if (!isClient || isAdminPage) return null;
 
@@ -143,7 +188,7 @@ export function CountdownPopup() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "rgba(0,0,0,0.85)",
+            background: "rgba(0,0,0,0.99)",
             backdropFilter: "blur(12px)",
             WebkitBackdropFilter: "blur(12px)",
           }}
@@ -185,8 +230,8 @@ export function CountdownPopup() {
     );
   }
 
-  // Post-launch: "We are open!" celebration banner
-  if (launched) {
+  // Post-launch: "We are open!" celebration banner — only if timer hit zero live
+  if (showCelebration) {
     return (
       <AnimatePresence>
         <motion.div

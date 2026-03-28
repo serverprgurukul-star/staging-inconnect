@@ -18,7 +18,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   // Regular pages - with header/footer
   return (
     <div className="flex min-h-screen flex-col">
-      <Preloader />
+      {/* <Preloader /> */}
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />

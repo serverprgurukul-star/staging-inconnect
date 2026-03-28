@@ -7,6 +7,7 @@ import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/contexts/cart-context";
 import { formatPrice, calculateDiscount } from "@/lib/utils";
 import type { Product } from "@/types/database";
+import type { CartItem } from "@/contexts/cart-context";
 
 interface ProductCardProps {
     product: Product;
@@ -16,11 +17,16 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, categorySlug, noBg, tag }: ProductCardProps) {
-    const { addItem } = useCart();
+    const { addItem, items } = useCart();
     const discount = calculateDiscount(product.price, product.compare_at_price);
     const [isHovered, setIsHovered] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+    const isOutOfStock = product.stock_quantity <= 0;
+    const isInCart = items.some((i: CartItem) => i.productId === product.id);
+    const isFeaturedInCart = product.is_featured && isInCart;
+    const cartDisabled = isOutOfStock || isFeaturedInCart;
 
     const productUrl = `/product/${product.slug}`;
 
@@ -58,6 +64,7 @@ export function ProductCard({ product, categorySlug, noBg, tag }: ProductCardPro
     const handleAddToCart = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
+        if (cartDisabled) return;
         addItem({
             productId: product.id,
             name: product.name,
@@ -65,6 +72,8 @@ export function ProductCard({ product, categorySlug, noBg, tag }: ProductCardPro
             price: product.price,
             compareAtPrice: product.compare_at_price,
             image: images[0],
+            isFeatured: product.is_featured,
+            stockQuantity: product.stock_quantity,
         });
     };
 
@@ -96,33 +105,50 @@ export function ProductCard({ product, categorySlug, noBg, tag }: ProductCardPro
 
                     {/* BADGE */}
                     <div className="absolute left-3 top-3 z-10">
-                        <span className={`rounded-md ${tagColors[displayTag] || "bg-red-500"} px-3 py-1 text-xs font-semibold text-white`}>
-                            {displayTag}
-                        </span>
+                        {isOutOfStock ? (
+                            <span className="rounded-md bg-zinc-500 px-3 py-1 text-xs font-semibold text-white">
+                                Out of Stock
+                            </span>
+                        ) : (
+                            <span className={`rounded-md ${tagColors[displayTag] || "bg-red-500"} px-3 py-1 text-xs font-semibold text-white`}>
+                                {displayTag}
+                            </span>
+                        )}
                     </div>
+
+                    {/* Out of Stock overlay */}
+                    {isOutOfStock && (
+                        <div className="absolute inset-0 bg-white/50 rounded-[10px] z-10" />
+                    )}
 
                     {/* Mobile Cart Button */}
-                    <button
-                        onClick={handleAddToCart}
-                        className="sm:hidden absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-black text-white z-10 active:scale-95 transition-transform shadow-lg"
-                    >
-                        <ShoppingCart className="h-4 w-4" />
-                    </button>
-
-                    {/* Desktop Hover Cart */}
-                    <div
-                        className={`hidden sm:flex absolute inset-x-0 bottom-0 justify-center pb-4 transition-all duration-300 ${
-                            isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                        }`}
-                    >
+                    {!isOutOfStock && (
                         <button
                             onClick={handleAddToCart}
-                            className="flex items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-semibold text-white shadow-lg hover:bg-zinc-800 transition-colors"
+                            disabled={cartDisabled}
+                            className="sm:hidden absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-black text-white z-10 active:scale-95 transition-transform shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
                         >
                             <ShoppingCart className="h-4 w-4" />
-                            Add to Cart
                         </button>
-                    </div>
+                    )}
+
+                    {/* Desktop Hover Cart */}
+                    {!isOutOfStock && (
+                        <div
+                            className={`hidden sm:flex absolute inset-x-0 bottom-0 justify-center pb-4 transition-all duration-300 ${
+                                isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                            }`}
+                        >
+                            <button
+                                onClick={handleAddToCart}
+                                disabled={cartDisabled}
+                                className="flex items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-semibold text-white shadow-lg hover:bg-zinc-800 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                            >
+                                <ShoppingCart className="h-4 w-4" />
+                                {isFeaturedInCart ? "Added" : "Add to Cart"}
+                            </button>
+                        </div>
+                    )}
                 </div>
 
                 {/* TEXT CONTENT - grows to fill, pushes price to bottom */}

@@ -11,6 +11,8 @@ export interface CartItem {
   compareAtPrice: number | null
   quantity: number
   image: string
+  isFeatured?: boolean
+  stockQuantity?: number
 }
 
 export interface AppliedCoupon {
@@ -92,27 +94,44 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, [appliedCoupon, isHydrated])
 
   const addItem = useCallback((item: Omit<CartItem, 'quantity'>, quantity = 1) => {
+    // Block out-of-stock products
+    if (item.stockQuantity !== undefined && item.stockQuantity <= 0) {
+      setTimeout(() => toast.error(`${item.name} is out of stock`), 0)
+      return
+    }
+
     let isUpdate = false
+    let blocked = false
 
     setItems((prev) => {
       const existingIndex = prev.findIndex((i) => i.productId === item.productId)
 
       if (existingIndex > -1) {
+        // Featured products: max quantity 1
+        if (item.isFeatured) {
+          blocked = true
+          return prev
+        }
         isUpdate = true
         const updated = [...prev]
         updated[existingIndex].quantity += quantity
         return updated
       }
 
-      return [...prev, { ...item, quantity }]
+      // Featured products always added with qty 1
+      const finalQty = item.isFeatured ? 1 : quantity
+      return [...prev, { ...item, quantity: finalQty }]
     })
 
-    // Toast outside of setState to avoid render-during-render
     setTimeout(() => {
-      toast.success(isUpdate ? `Updated ${item.name} quantity` : `Added ${item.name} to cart`)
+      if (blocked) {
+        toast.error('Only 1 unit allowed per featured product')
+      } else {
+        toast.success(isUpdate ? `Updated ${item.name} quantity` : `Added ${item.name} to cart`)
+      }
     }, 0)
 
-    setIsOpen(true)
+    if (!blocked) setIsOpen(true)
   }, [])
 
   const removeItem = useCallback((productId: string) => {
@@ -141,9 +160,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
 
     setItems((prev) =>
-      prev.map((item) =>
-        item.productId === productId ? { ...item, quantity } : item
-      )
+      prev.map((item) => {
+        if (item.productId !== productId) return item
+        // Featured products capped at 1
+        const finalQty = item.isFeatured ? 1 : quantity
+        return { ...item, quantity: finalQty }
+      })
     )
   }, [removeItem])
 

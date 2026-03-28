@@ -64,8 +64,8 @@ setInterval(() => {
   }
 }, 5 * 60_000) // every 5 minutes
 
-// Launch date: March 28, 2026 at 7:00 PM IST (UTC+5:30 = 13:30 UTC)
-const LAUNCH_DATE = new Date('2026-03-28T13:30:00.000Z')
+// Launch date from env — NEXT_PUBLIC_LAUNCH_TIMESTAMP
+const LAUNCH_DATE = new Date(process.env.NEXT_PUBLIC_LAUNCH_TIMESTAMP!)
 
 // Routes blocked before launch (frontend pages)
 const PRE_LAUNCH_BLOCKED_PAGES = ['/shop', '/product', '/cart', '/checkout', '/order-success', '/track-order']

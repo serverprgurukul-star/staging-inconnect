@@ -13,8 +13,6 @@ import {
     Apple,
     Tablet,
     Shield,
-    Minus,
-    Plus,
 } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
 import { useCart } from "@/contexts/cart-context";
@@ -58,10 +56,9 @@ export default function ProductPage({ params }: PageProps) {
     const [category, setCategory] = useState<Category | null>(null);
     const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
     const [selectedImage, setSelectedImage] = useState(0);
-    const [quantity, setQuantity] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
     const [openFaq, setOpenFaq] = useState<number | null>(null);
-    const { addItem } = useCart();
+    const { addItem, items } = useCart();
 
     useEffect(() => {
         async function fetchProduct() {
@@ -144,18 +141,23 @@ export default function ProductPage({ params }: PageProps) {
             ? product.images
             : ["/placeholder-product.jpg"];
 
+    const isOutOfStock = product.stock_quantity <= 0;
+    const isInCart = items.some((i) => i.productId === product.id);
+    const isFeaturedInCart = product.is_featured && isInCart;
+    const addDisabled = isOutOfStock || isFeaturedInCart;
+
     const handleAddToCart = () => {
-        addItem(
-            {
-                productId: product.id,
-                name: product.name,
-                slug: product.slug,
-                price: product.price,
-                compareAtPrice: product.compare_at_price,
-                image: images[0],
-            },
-            quantity,
-        );
+        if (addDisabled) return;
+        addItem({
+            productId: product.id,
+            name: product.name,
+            slug: product.slug,
+            price: product.price,
+            compareAtPrice: product.compare_at_price,
+            image: images[0],
+            isFeatured: product.is_featured,
+            stockQuantity: product.stock_quantity,
+        });
     };
 
     return (
@@ -385,41 +387,19 @@ export default function ProductPage({ params }: PageProps) {
                                 </div>
                             )}
 
-                            {/* Quantity & Add to Cart (Desktop/Tablet only) */}
+                            {/* Add to Cart (Desktop/Tablet only) */}
                             <div className="hidden sm:flex items-center gap-3 sm:gap-4 mt-6 sm:mt-8">
-                                {/* Quantity Selector */}
-                                <div className="flex items-center border border-zinc-200 rounded-[10px]">
-                                    <button
-                                        onClick={() =>
-                                            setQuantity(
-                                                Math.max(1, quantity - 1),
-                                            )
-                                        }
-                                        className="h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center text-zinc-500 hover:text-zinc-900 transition-colors"
-                                    >
-                                        <Minus className="h-4 w-4" />
-                                    </button>
-                                    <span className="w-8 sm:w-10 text-center font-medium text-zinc-900">
-                                        {quantity}
-                                    </span>
-                                    <button
-                                        onClick={() =>
-                                            setQuantity(quantity + 1)
-                                        }
-                                        className="h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center text-zinc-500 hover:text-zinc-900 transition-colors"
-                                    >
-                                        <Plus className="h-4 w-4" />
-                                    </button>
-                                </div>
-
-                                {/* Add to Cart Button */}
                                 <button
                                     onClick={handleAddToCart}
-                                    disabled={product.stock_quantity <= 0}
+                                    disabled={addDisabled}
                                     className="flex-1 h-10 sm:h-12 rounded-[10px] text-white font-semibold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                                     style={{ backgroundColor: "#38bdf8" }}
                                 >
-                                    {product.stock_quantity > 0 ? "Add to cart" : "Out of stock"}
+                                    {isOutOfStock
+                                        ? "Out of stock"
+                                        : isFeaturedInCart
+                                        ? "Added to cart"
+                                        : "Add to cart"}
                                 </button>
                             </div>
 
@@ -585,38 +565,18 @@ export default function ProductPage({ params }: PageProps) {
 
             {/* Sticky Add to Cart Bar (Mobile) */}
             <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-zinc-200 p-4 sm:hidden shadow-[0_-4px_20px_rgba(0,0,0,0.1)]">
-                <div className="flex items-center gap-3">
-                    {/* Quantity Selector */}
-                    <div className="flex items-center border border-zinc-200 rounded-[10px] bg-zinc-50">
-                        <button
-                            onClick={() =>
-                                setQuantity(Math.max(1, quantity - 1))
-                            }
-                            className="h-11 w-11 flex items-center justify-center text-zinc-600 active:bg-zinc-200 rounded-l-full transition-colors"
-                        >
-                            <Minus className="h-4 w-4" />
-                        </button>
-                        <span className="w-8 text-center font-semibold text-zinc-900">
-                            {quantity}
-                        </span>
-                        <button
-                            onClick={() => setQuantity(quantity + 1)}
-                            className="h-11 w-11 flex items-center justify-center text-zinc-600 active:bg-zinc-200 rounded-r-full transition-colors"
-                        >
-                            <Plus className="h-4 w-4" />
-                        </button>
-                    </div>
-
-                    {/* Add to Cart Button */}
-                    <button
-                        onClick={handleAddToCart}
-                        disabled={product.stock_quantity <= 0}
-                        className="flex-1 h-11 rounded-[10px] text-white font-semibold text-sm active:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
-                        style={{ backgroundColor: "#38bdf8" }}
-                    >
-                        {product.stock_quantity > 0 ? `Add to cart • ${formatPrice(product.price * quantity)}` : "Out of stock"}
-                    </button>
-                </div>
+                <button
+                    onClick={handleAddToCart}
+                    disabled={addDisabled}
+                    className="w-full h-11 rounded-[10px] text-white font-semibold text-sm active:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{ backgroundColor: "#38bdf8" }}
+                >
+                    {isOutOfStock
+                        ? "Out of stock"
+                        : isFeaturedInCart
+                        ? "Added to cart"
+                        : `Add to cart • ${formatPrice(product.price)}`}
+                </button>
             </div>
 
             {/* Spacer for mobile sticky bar */}
