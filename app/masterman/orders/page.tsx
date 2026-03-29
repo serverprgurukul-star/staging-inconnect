@@ -277,31 +277,65 @@ export default function AdminOrdersPage() {
           </span>
           <div className="flex items-center gap-1">
             <button
+              onClick={() => setCurrentPage(1)}
+              disabled={currentPage === 1}
+              className="rounded-[10px] px-3 py-1.5 font-medium hover:bg-zinc-100 disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              «
+            </button>
+            <button
               onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
               disabled={currentPage === 1}
               className="rounded-[10px] px-3 py-1.5 font-medium hover:bg-zinc-100 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               Previous
             </button>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <button
-                key={page}
-                onClick={() => setCurrentPage(page)}
-                className={`rounded-[10px] px-3 py-1.5 font-medium ${
-                  page === currentPage
-                    ? 'bg-zinc-900 text-white'
-                    : 'hover:bg-zinc-100'
-                }`}
-              >
-                {page}
-              </button>
-            ))}
+
+            {/* Smart page window: first, ...., current-1, current, current+1, ..., last */}
+            {(() => {
+              const pages: (number | '...')[] = []
+              const delta = 1
+              const left = currentPage - delta
+              const right = currentPage + delta
+
+              for (let i = 1; i <= totalPages; i++) {
+                if (i === 1 || i === totalPages || (i >= left && i <= right)) {
+                  pages.push(i)
+                } else if (pages[pages.length - 1] !== '...') {
+                  pages.push('...')
+                }
+              }
+
+              return pages.map((page, i) =>
+                page === '...' ? (
+                  <span key={`ellipsis-${i}`} className="px-2 py-1.5 text-zinc-400">…</span>
+                ) : (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page as number)}
+                    className={`rounded-[10px] px-3 py-1.5 font-medium ${
+                      page === currentPage ? 'bg-zinc-900 text-white' : 'hover:bg-zinc-100'
+                    }`}
+                  >
+                    {page}
+                  </button>
+                )
+              )
+            })()}
+
             <button
               onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
               className="rounded-[10px] px-3 py-1.5 font-medium hover:bg-zinc-100 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               Next
+            </button>
+            <button
+              onClick={() => setCurrentPage(totalPages)}
+              disabled={currentPage === totalPages}
+              className="rounded-[10px] px-3 py-1.5 font-medium hover:bg-zinc-100 disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              »
             </button>
           </div>
         </div>
