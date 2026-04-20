@@ -20,7 +20,7 @@ export default async function AIReviewCardPage() {
     .eq('is_active', true)
     .order('created_at', { ascending: false })
 
-  const products: Product[] = featuredProducts || []
+  const products = (featuredProducts || []) as unknown as Product[]
 
   return <AIReviewAnimatedContent products={products} />
 }
