@@ -83,7 +83,7 @@ function ShopContent() {
         .eq('is_active', true)
 
       if (productsData) {
-        setProducts(productsData)
+        setProducts(productsData as unknown as Product[])
       }
 
       setLoading(false)

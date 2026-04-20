@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { JustDroppedClient } from "./just-dropped-client";
+import type { Product } from "@/types/database";
 
 export async function JustDropped() {
     const supabase = await createClient();
@@ -21,5 +22,5 @@ export async function JustDropped() {
         .order("created_at", { ascending: false })
         .limit(2);
 
-    return <JustDroppedClient heroProduct={heroProduct} products={products || []} />;
+    return <JustDroppedClient heroProduct={heroProduct as unknown as Product} products={(products || []) as unknown as Product[]} />;
 }

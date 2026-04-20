@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { FeaturedProductsClient } from "./featured-products-client";
+import type { Product } from "@/types/database";
 
 export async function FeaturedProducts() {
   const supabase = await createClient();
@@ -12,5 +13,5 @@ export async function FeaturedProducts() {
     .order("created_at", { ascending: false })
     .limit(8); // Increased limit for slider
 
-  return <FeaturedProductsClient products={products || []} />;
+  return <FeaturedProductsClient products={(products || []) as unknown as Product[]} />;
 }

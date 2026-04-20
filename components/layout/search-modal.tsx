@@ -93,7 +93,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             )
             .limit(8);
 
-        setProducts(data || []);
+        setProducts((data || []) as unknown as Product[]);
         setIsLoading(false);
     }, []);
 
