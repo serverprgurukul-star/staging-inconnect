@@ -59,8 +59,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
         return () => window.removeEventListener("keydown", handleEsc);
     }, [isOpen, onClose]);
 
-    // Fetch categories on mount
+    // Fetch categories only when modal first opens
     useEffect(() => {
+        if (!isOpen || categories.length > 0) return;
         async function fetchCategories() {
             const supabase = createClient();
             const { data } = await supabase
@@ -71,7 +72,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             setCategories(data || []);
         }
         fetchCategories();
-    }, []);
+    }, [isOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
     // Search products
     const searchProducts = useCallback(async (searchQuery: string) => {
@@ -85,7 +86,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
         const { data } = await supabase
             .from("products")
-            .select("*")
+            .select("id, slug, name, short_description, price, compare_at_price, images")
             .eq("is_active", true)
             .or(
                 `name.ilike.%${searchQuery}%,description.ilike.%${searchQuery}%,short_description.ilike.%${searchQuery}%`,

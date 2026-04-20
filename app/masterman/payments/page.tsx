@@ -40,7 +40,7 @@ export default function AdminPaymentsPage() {
       const supabase = createClient()
       const { data } = await supabase
         .from('payments')
-        .select('*, orders(order_number, customers(first_name, last_name, email))')
+        .select('id, amount, status, method, transaction_id, created_at, orders(order_number, customers(first_name, last_name, email))')
         .order('created_at', { ascending: false })
 
       setPayments(

@@ -7,7 +7,7 @@ export async function JustDropped() {
     // Fetch the just dropped hero product (only one can have this tag)
     const { data: heroProduct } = await supabase
         .from("products")
-        .select("*")
+        .select("id, slug, name, short_description, price, compare_at_price, images, is_featured, stock_quantity, hero_video_url, is_just_dropped_hero")
         .eq("is_active", true)
         .eq("is_just_dropped_hero", true)
         .single();
@@ -15,7 +15,7 @@ export async function JustDropped() {
     // Fetch other newest products for the side cards (exclude hero if exists)
     const { data: products } = await supabase
         .from("products")
-        .select("*")
+        .select("id, slug, name, short_description, price, compare_at_price, images, is_featured, stock_quantity, hero_video_url, is_just_dropped_hero")
         .eq("is_active", true)
         .neq("is_just_dropped_hero", true)
         .order("created_at", { ascending: false })

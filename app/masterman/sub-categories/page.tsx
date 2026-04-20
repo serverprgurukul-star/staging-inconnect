@@ -165,7 +165,7 @@ export default function AdminSubCategoriesPage() {
           <p className="mt-1 text-zinc-500">Manage product sub-categories</p>
         </div>
         <Button asChild>
-          <Link href="/masterman/sub-categories/new">
+          <Link href="/masterman/sub-categories/new" prefetch={false}>
             <Plus className="mr-2 h-4 w-4" />
             Add Sub-Category
           </Link>

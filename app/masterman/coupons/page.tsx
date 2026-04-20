@@ -170,7 +170,7 @@ export default function AdminCouponsPage() {
             Export CSV
           </Button>
           <Button asChild>
-            <Link href="/masterman/coupons/new">
+            <Link href="/masterman/coupons/new" prefetch={false}>
               <Plus className="mr-2 h-4 w-4" />
               Add Coupon
             </Link>

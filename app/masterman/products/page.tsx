@@ -145,6 +145,7 @@ export default function AdminProductsPage() {
         <div className="flex items-center gap-2">
           <Link
             href={`/masterman/products/${product.id}`}
+            prefetch={false}
             className="rounded-[10px] p-2 text-zinc-600 hover:bg-zinc-100"
           >
             <Pencil className="h-4 w-4" />
@@ -198,7 +199,7 @@ export default function AdminProductsPage() {
             Export CSV
           </Button>
           <Button asChild>
-            <Link href="/masterman/products/new">
+            <Link href="/masterman/products/new" prefetch={false}>
               <Plus className="mr-2 h-4 w-4" />
               Add Product
             </Link>

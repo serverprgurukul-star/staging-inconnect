@@ -15,7 +15,7 @@ export default async function AIReviewCardPage() {
   // Fetch all featured products
   const { data: featuredProducts } = await supabase
     .from('products')
-    .select('*')
+    .select('id, slug, name, short_description, price, compare_at_price, images, is_featured, stock_quantity')
     .eq('is_featured', true)
     .eq('is_active', true)
     .order('created_at', { ascending: false })

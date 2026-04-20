@@ -88,6 +88,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  prefetch={false}
                   className={cn(
                     "flex items-center gap-1.5 px-4 py-2 rounded-[10px] text-md font-medium transition",
                     "text-black hover:bg-white hover:text-black",
@@ -163,6 +164,7 @@ export function Header() {
                     >
                       <Link
                         href={category.href}
+                        prefetch={false}
                         className={cn(
                           "group block rounded-[10px] p-4 transition hover:shadow-lg",
                           category.isAllProducts
@@ -349,6 +351,7 @@ export function Header() {
                               >
                                 <Link
                                   href={category.href}
+                                  prefetch={false}
                                   onClick={() => setMobileOpen(false)}
                                   className="flex items-center gap-3 rounded-[10px] px-4 py-2.5 text-sm text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900"
                                 >

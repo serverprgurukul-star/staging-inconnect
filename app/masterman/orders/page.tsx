@@ -245,6 +245,7 @@ export default function AdminOrdersPage() {
                     <td className="px-4 py-3">
                       <Link
                         href={`/masterman/orders/${order.id}`}
+                        prefetch={false}
                         onClick={() => {
                           sessionStorage.setItem('orders-scroll', String(window.scrollY))
                           sessionStorage.setItem('orders-page', String(currentPage))

@@ -165,7 +165,7 @@ export default function AdminTestimonialsPage() {
           <p className="mt-1 text-zinc-500">Manage customer testimonials</p>
         </div>
         <Button asChild>
-          <Link href="/masterman/testimonials/new">
+          <Link href="/masterman/testimonials/new" prefetch={false}>
             <Plus className="mr-2 h-4 w-4" />
             Add Testimonial
           </Link>

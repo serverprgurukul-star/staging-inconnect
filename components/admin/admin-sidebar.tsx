@@ -132,6 +132,7 @@ export function AdminSidebar({ isCollapsed, onToggle, isMobileOpen, onMobileClos
                 <li key={item.href}>
                   <Link
                     href={item.href}
+                    prefetch={false}
                     onClick={handleNavClick}
                     className={cn(
                       'flex items-center rounded-[10px] py-2.5 text-sm font-medium transition-colors',

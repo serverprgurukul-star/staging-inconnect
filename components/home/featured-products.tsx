@@ -6,7 +6,7 @@ export async function FeaturedProducts() {
 
   const { data: products } = await supabase
     .from("products")
-    .select("*")
+    .select("id, slug, name, short_description, price, compare_at_price, images, is_featured, stock_quantity")
     .eq("is_featured", true)
     .eq("is_active", true)
     .order("created_at", { ascending: false })

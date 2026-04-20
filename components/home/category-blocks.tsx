@@ -72,6 +72,7 @@ export function CategoryBlocks() {
                     <motion.div variants={fadeInUp} transition={{ duration: 0.5 }} className="col-span-1 sm:col-span-2 lg:col-span-3">
                         <Link
                             href={categories[0].href}
+                            prefetch={false}
                             className={`group relative flex items-end overflow-hidden rounded-[10px] ${categories[0].bgColor} p-5 sm:p-8 lg:p-12 min-h-[180px] sm:min-h-[280px] lg:min-h-[400px] transition-all hover:shadow-2xl hover:shadow-indigo-500/20`}
                         >
                             <div className="relative z-10 max-w-[55%] sm:max-w-[50%] lg:max-w-[280px]">
@@ -100,6 +101,7 @@ export function CategoryBlocks() {
                     <motion.div variants={fadeInUp} transition={{ duration: 0.5 }} className="col-span-1 lg:col-span-2">
                         <Link
                             href={categories[1].href}
+                            prefetch={false}
                             className={`group relative flex flex-col justify-end overflow-hidden rounded-[10px] ${categories[1].bgColor} p-5 sm:p-5 lg:p-10 min-h-[180px] sm:min-h-[220px] lg:min-h-[400px] transition-all hover:shadow-2xl hover:shadow-orange-500/20`}
                         >
                             <div
@@ -128,6 +130,7 @@ export function CategoryBlocks() {
                     <motion.div variants={fadeInUp} transition={{ duration: 0.5 }} className="col-span-1 lg:col-span-2">
                         <Link
                             href={categories[2].href}
+                            prefetch={false}
                             className={`group relative flex flex-col justify-end overflow-hidden rounded-[10px] ${categories[2].bgColor} p-5 sm:p-5 lg:p-10 min-h-[180px] sm:min-h-[220px] lg:min-h-[400px] transition-all hover:shadow-2xl hover:shadow-yellow-500/20`}
                         >
                             <div
@@ -156,6 +159,7 @@ export function CategoryBlocks() {
                     <motion.div variants={fadeInUp} transition={{ duration: 0.5 }} className="col-span-1 sm:col-span-2 lg:col-span-3">
                         <Link
                             href={categories[3].href}
+                            prefetch={false}
                             className={`group relative flex items-end overflow-hidden rounded-[10px] ${categories[3].bgColor} p-5 sm:p-8 lg:p-12 min-h-[180px] sm:min-h-[280px] lg:min-h-[400px] transition-all hover:shadow-2xl hover:shadow-teal-500/20`}
                         >
                             <div className="relative z-10 max-w-[55%] sm:max-w-[50%] lg:max-w-[300px]">

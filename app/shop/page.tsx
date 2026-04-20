@@ -17,6 +17,7 @@ interface Product {
   is_featured: boolean
   is_popular: boolean
   is_active: boolean
+  stock_quantity: number
   category_id: string
   sub_category_id: string | null
   created_at: string
@@ -78,7 +79,7 @@ function ShopContent() {
 
       const { data: productsData } = await supabase
         .from('products')
-        .select('*')
+        .select('id, slug, name, short_description, price, compare_at_price, images, is_featured, is_popular, stock_quantity, category_id, sub_category_id, created_at')
         .eq('is_active', true)
 
       if (productsData) {

@@ -28,7 +28,7 @@ export default function AdminCustomersPage() {
 
       const { data } = await supabase
         .from('customers')
-        .select('*')
+        .select('id, email, phone, first_name, last_name, created_at')
         .order('created_at', { ascending: false })
 
       setCustomers(data || [])

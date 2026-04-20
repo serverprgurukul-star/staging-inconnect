@@ -1,32 +1,19 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import {
-    Mail,
     MapPin,
     Star,
     Instagram,
-    Facebook,
-    Twitter,
-    Linkedin,
-    Youtube,
     Truck,
     IndianRupee,
     Wand,
-    ShieldCheck,
-    Gift,
 } from "lucide-react";
-import { createClient } from "@/utils/supabase/client";
 
-interface Category {
-    id: string;
-    name: string;
-    slug: string;
-    is_active: boolean;
-    display_order: number;
-}
+const productCategories = [
+    { id: "nfc-cards", name: "NFC Cards", slug: "nfc-cards" },
+    { id: "3d-nfc-products", name: "3D NFC Products", slug: "3d-nfc-products" },
+    { id: "standees", name: "Standees", slug: "standees" },
+];
 
 const exploreLinks = [
     { name: "About Us", href: "/about" },
@@ -45,23 +32,7 @@ const socialLinks = [
 ];
 
 export function Footer() {
-    const [categories, setCategories] = useState<Category[]>([]);
-
-    useEffect(() => {
-        async function fetchCategories() {
-            const supabase = createClient();
-            const { data } = await supabase
-                .from("categories")
-                .select("*")
-                .eq("is_active", true)
-                .order("display_order", { ascending: true });
-
-            if (data) {
-                setCategories(data);
-            }
-        }
-        fetchCategories();
-    }, []);
+    const categories = productCategories;
 
     return (
         <footer className="bg-[#EBEBEB] pt-16 pb-8 text-black font-sans">
@@ -100,6 +71,7 @@ export function Footer() {
                                     <li key={category.id}>
                                         <Link
                                             href={`/shop?category=${category.slug}`}
+                                            prefetch={false}
                                             className="text-sm font-bold text-zinc-600 hover:text-sky-600 transition-colors"
                                         >
                                             {category.name}
@@ -117,6 +89,7 @@ export function Footer() {
                                     <li key={link.name}>
                                         <Link
                                             href={link.href}
+                                            prefetch={false}
                                             className="flex items-center gap-2 text-sm font-bold text-zinc-600 hover:text-sky-600 transition-colors"
                                         >
                                             {link.featured && (
@@ -139,6 +112,7 @@ export function Footer() {
                                 <li>
                                     <Link
                                         href="/track-order"
+                                        prefetch={false}
                                         className="text-sm font-bold text-zinc-600 hover:text-sky-600 transition-colors"
                                     >
                                         Track Order
@@ -147,6 +121,7 @@ export function Footer() {
                                 <li>
                                     <Link
                                         href="/faqs"
+                                        prefetch={false}
                                         className="text-sm font-bold text-zinc-600 hover:text-sky-600 transition-colors"
                                     >
                                         FAQs
@@ -217,13 +192,13 @@ export function Footer() {
                             All Rights Reserved.
                         </p>
                         <div className="hidden md:flex flex-wrap gap-x-8 gap-y-2 text-xs font-black">
-                            <Link href="/privacy" className="hover:underline">
+                            <Link href="/privacy" prefetch={false} className="hover:underline">
                                 Privacy Policy
                             </Link>
-                            <Link href="/terms" className="hover:underline">
+                            <Link href="/terms" prefetch={false} className="hover:underline">
                                 Terms of Service
                             </Link>
-                            <Link href="/refund" className="hover:underline">
+                            <Link href="/refund" prefetch={false} className="hover:underline">
                                 Refund Policy
                             </Link>
                         </div>
