@@ -4,7 +4,7 @@ import { AIReviewAnimatedContent } from '@/components/ai-review/animated-content
 import type { Product } from '@/types/database'
 
 export const metadata: Metadata = {
-  title: 'AI Review Card',
+  title: 'AI Review Card India | Get More Google Reviews Instantly | Instant Connect',
   description:
     'Boost your Google reviews with our AI-powered NFC Review Cards. Make it easy for customers to leave positive reviews.',
 }

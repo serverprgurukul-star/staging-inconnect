@@ -5,7 +5,7 @@ import { Target, Users, Zap, Award, Heart, Globe } from "lucide-react";
 import { BookDemoCTA } from "@/components/home/book-demo-cta";
 
 export const metadata: Metadata = {
-    title: "About Us",
+    title: "About Instant Connect | India's Leading NFC Business Card Brand",
     description:
         "Learn about Instant Connect - your partner in digital networking solutions.",
 };
@@ -46,7 +46,7 @@ const values = [
 
 const team = [
     {
-        name: "kartik",
+        name: "Kartik",
         role: "Founder & CEO",
         image: "https://res.cloudinary.com/dem0bqs8e/image/upload/v1770999075/1000072158_4_eywxic.png",
     },
@@ -102,7 +102,7 @@ export default function AboutPage() {
         >
             {/* Hero */}
             <section className="px-[6px] pb-0">
-                <div className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] overflow-hidden rounded-b-[10px]">
+                <div className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] overflow-hidden rounded-b-[10px]">
                     {/* Background Image */}
                     <div
                         className="absolute inset-0 bg-cover bg-center"
@@ -110,17 +110,19 @@ export default function AboutPage() {
                             backgroundImage: `url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop')`,
                         }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/90 to-black/40" />
+
 
                     {/* Content */}
                     <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 sm:px-6 pt-16 lg:pt-0">
-                        <p className="text-center text-xs sm:text-sm md:text-base text-white/70 max-w-xs sm:max-w-md md:max-w-2xl">
-                            We believe in the power of first impressions and
-                            meaningful connections.
-                        </p>
-                        <h1 className="mt-3 sm:mt-4 text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white max-w-xs sm:max-w-lg md:max-w-3xl">
-                            Revolutionizing Digital Networking
+                       
+                        <h1 className="mt-3 sm:mt-4 text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-xs sm:max-w-lg md:max-w-3xl">
+                            India's Leading NFC Business Card Brand — Based in Udaipur
+
                         </h1>
+                         <p className="text-center mt-4 text-xs sm:text-sm md:text-base text-white/70 max-w-xs sm:max-w-md md:max-w-2xl">
+                            Trusted by 10,000+ professionals across India. We make digital networking effortless with smart NFC cards, AI review tools, and more.
+                        </p>
                         <div className="mt-5 sm:mt-6 md:mt-8 flex flex-col sm:flex-row gap-3">
                             <Link
                                 href="/shop"
@@ -183,7 +185,7 @@ export default function AboutPage() {
                         <div className="w-full lg:w-1/2 p-5 sm:p-8 rounded-[10px] bg-white">
                             <div className="space-y-4 text-sm sm:text-base text-zinc-600">
                                 <p>
-                                    It all started when our founders experienced
+                                    Founded in Udaipur, Rajasthan, Instant Connect started with one simple idea - It all started when our founders experienced
                                     the frustration of running out of business
                                     cards at a crucial networking event. That
                                     moment sparked an idea: what if we could
@@ -263,13 +265,13 @@ export default function AboutPage() {
             </section>
 
             {/* Team */}
-            <section className="py-8 sm:py-12 lg:py-16">
+            {/* <section className="py-8 sm:py-12 lg:py-16">
                 <div className="mx-auto w-[95%]">
                     <div
                         className="rounded-[10px] p-5 sm:p-8 lg:p-10"
                         style={{ backgroundColor: "#38bdf8" }}
                     >
-                        {/* Section Header */}
+
                         <div className="text-center pb-6 sm:pb-8">
                             <div className="flex items-center justify-center gap-2 mb-3">
                                 <span className="h-px w-8 bg-white/50" />
@@ -284,7 +286,7 @@ export default function AboutPage() {
                             </h2>
                         </div>
 
-                        {/* Team Grid */}
+
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
                             {team.map((member) => (
                                 <div
@@ -303,16 +305,14 @@ export default function AboutPage() {
                                         <h3 className="text-sm sm:text-base font-bold text-white">
                                             {member.name}
                                         </h3>
-                                        {/* <p className="text-xs sm:text-sm text-white/70">
-                                            {member.role}
-                                        </p> */}
+                                        
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* Mission & Vision */}
             <section className="py-8 sm:py-12 lg:py-16">

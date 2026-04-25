@@ -26,7 +26,7 @@ const steps = [
         title: "Choose Your Product",
         description:
             "Select from our range of NFC cards, QR codes, standees, keychains, or table tents.",
-        image: "https://res.cloudinary.com/dem0bqs8e/image/upload/v1767860730/Photo_3_qu1nme.jpg",
+        image: "https://souhaygiitgemoplvwnl.supabase.co/storage/v1/object/public/other%20images/Photo_1_pglrg1.jpg",
     },
     {
         number: "02",
@@ -34,7 +34,7 @@ const steps = [
         title: "Set Up Your Profile",
         description:
             "Create your digital profile with contact details, social links, portfolio, and more.",
-        image: "https://res.cloudinary.com/dem0bqs8e/image/upload/v1770995245/IMG_0300_h6taeb.jpg",
+        image: "/setup.jpg",
     },
     {
         number: "03",
@@ -42,7 +42,7 @@ const steps = [
         title: "Share Instantly",
         description:
             "Tap your NFC product against any smartphone to instantly share your profile.",
-        image: "https://res.cloudinary.com/dem0bqs8e/image/upload/v1770995245/IMG_0303_e6l9fd.jpg",
+        image: "tap.jpg",
     },
 ];
 
@@ -152,21 +152,14 @@ export function HowItWorksAnimatedContent() {
                     <div
                         className="absolute inset-0 bg-cover bg-center"
                         style={{
-                            backgroundImage: `url('https://res.cloudinary.com/dem0bqs8e/image/upload/v1767860729/Photo_1_pglrg1.jpg')`,
+                            backgroundImage: `url('https://souhaygiitgemoplvwnl.supabase.co/storage/v1/object/public/other%20images/Photo_1_pglrg1.jpg')`,
                         }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/90 to-black/40" />
 
                     {/* Content */}
                     <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 sm:px-6">
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="text-center text-xs sm:text-sm md:text-base text-white/70 max-w-xs sm:max-w-md md:max-w-2xl"
-                        >
-                            Share your professional identity with just one tap. No apps needed.
-                        </motion.p>
+                       
 
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
@@ -174,8 +167,16 @@ export function HowItWorksAnimatedContent() {
                             transition={{ delay: 0.3 }}
                             className="mt-3 sm:mt-4 text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white max-w-xs sm:max-w-lg md:max-w-2xl"
                         >
-                            Networking made effortless.
+                            How NFC Business Cards Work | Instant Connect India
                         </motion.h1>
+                         <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-center mt-4 text-xs sm:text-sm md:text-base text-white/70 max-w-xs sm:max-w-md md:max-w-2xl"
+                        >
+                            Share your contact details, social links and portfolio with one tap. Works on all NFC-enabled smartphones — no app needed.
+                        </motion.p>
 
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -475,11 +476,11 @@ export function HowItWorksAnimatedContent() {
                         transition={{ duration: 0.5 }}
                         className="text-center mb-10 sm:mb-12"
                     >
-                        <span className="text-xs sm:text-sm font-medium text-sky-400 uppercase tracking-wide">
+                        {/* <span className="text-xs sm:text-sm font-medium text-sky-400 uppercase tracking-wide">
                             FAQ
-                        </span>
+                        </span> */}
                         <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-black tracking-tighter">
-                            Questions? <span className="text-zinc-400">Answered.</span>
+                            Frequently Asked Questions <span className="text-zinc-400"></span>
                         </h2>
                     </motion.div>
                     <motion.div

@@ -53,8 +53,7 @@ export function Footer() {
                                 <MapPin size={24} className="text-zinc-500" />
                             </div>
                             <p className="text-sm font-bold leading-relaxed max-w-[260px]">
-                                Siddharth nagar, opposite of Miraj Malhar
-                                appartment, New Bhupalpura, Udaipur, Rajasthan
+                                Siddharth nagar, opposite of Miraj Malhar Apartment, New Bhupalpura, Udaipur, Rajasthan
                                 313001
                             </p>
                         </div>
@@ -185,7 +184,7 @@ export function Footer() {
                 <div className="flex flex-col md:flex-row justify-between items-center gap-8 border-t border-black/10 pt-4">
                     <div className="flex flex-row w-full justify-between gap-4">
                         <p className="text-xs font-bold text-zinc-500">
-                            Copyright © 2025{" "}
+                            Copyright © 2026{" "}
                             <span className="text-sky-600">
                                 Instant Connect
                             </span>{" "}

@@ -1,4 +1,6 @@
 "use client";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 export function HeroSection() {
   return (
@@ -27,7 +29,48 @@ export function HeroSection() {
         </div>
 
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/90 to-black/40" />
+
+        {/* Content */}
+        <div className="relative z-10  flex h-full flex-col items-center justify-center px-4 sm:px-6">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mt-3  sm:mt-4 text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white max-w-xs sm:max-w-lg md:max-w-3xl"
+          >
+            India's #1 NFC Business Card — Share Your Profile in One Tap
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-center mt-4 mb-1 md:mb-18 text-xs sm:text-sm md:text-base text-white/70 max-w-xs sm:max-w-md md:max-w-3xl"
+          >
+            Buy NFC smart cards, AI review cards & digital standees. No app
+            needed. Works on all phones. Free shipping across India.
+          </motion.p>
+
+          {/* <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5 }}
+                            className="mt-5 sm:mt-6 md:mt-8 flex flex-wrap justify-center gap-3"
+                        >
+                            <Link
+                                href="/shop"
+                                className="rounded-[10px] bg-white px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-zinc-900 hover:bg-zinc-100 transition-colors"
+                            >
+                                Shop Now
+                            </Link>
+                            <Link
+                                href="/book-demo"
+                                className="rounded-[10px] bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white hover:bg-white/20 transition-colors"
+                            >
+                                Book a Demo
+                            </Link>
+                        </motion.div> */}
+        </div>
       </div>
     </section>
   );

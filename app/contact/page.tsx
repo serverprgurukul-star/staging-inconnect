@@ -19,7 +19,7 @@ const contactInfo = [
         icon: MapPin,
         title: "Visit Us",
         details: [
-            "Siddharth Nagar, Opp. Miraj Malhar Apt.",
+            "Siddharth Nagar, Opp. Miraj Malhar Apartment",
             "New Bhupalpura, Udaipur",
             "Rajasthan 313001",
         ],

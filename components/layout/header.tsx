@@ -23,6 +23,7 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "How It Works", href: "/how-it-works" },
   { name: "AI Review Card", href: "/ai-review-card", featured: true },
+   { name: "About Us", href: "/about" },
 ];
 
 const categories = [

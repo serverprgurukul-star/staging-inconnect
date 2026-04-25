@@ -90,14 +90,12 @@ export function JustDroppedClient({ heroProduct, products }: JustDroppedClientPr
                         <div className="flex items-center gap-2 mb-4">
                             <span className="md:block hidden h-px w-8 bg-sky-400" />
                             <span className="md:block hidden text-md font-black uppercase tracking-[0.2em] text-sky-400">
-                                Inventory Update
+                                New Arrivals
                             </span>
                         </div>
-                        <h2 className="text-4xl font-black text-black tracking-tighter leading-[0.9] sm:text-6xl">
-                            Just{" "}
-                            <span className="font-black text-zinc-400">
-                                dropped.
-                            </span>
+                        <h2 className="text-3xl font-black text-black tracking-tighter leading-[0.9] sm:text-5xl">
+                           NFC Cards & Smart Products. {" "}
+                        
                         </h2>
                     </div>
                     <Link

@@ -40,12 +40,11 @@ export function TestimonialsSectionClient({ testimonials }: TestimonialsSectionC
                         >
                             <span className="hidden sm:block h-px w-8 bg-sky-400" />
                             <span className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.2em] text-sky-400">
-                                The Trust Network
+                                Real Reviews from India
                             </span>
                         </motion.div>
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-black tracking-tighter leading-[0.9]">
-                            Loved by creators{" "}
-                            <span className="text-zinc-400">everywhere.</span>
+                            What Our Customers Say
                         </h2>
                     </div>
 

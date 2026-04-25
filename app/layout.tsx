@@ -24,7 +24,7 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: {
-    default: "Instant Connect - Smart NFC & QR Business Cards",
+    default: "NFC Business Cards India | Buy Smart Digital Visiting Cards | Instant Connect",
     template: "%s | Instant Connect",
   },
   description:

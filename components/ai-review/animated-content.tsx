@@ -104,7 +104,7 @@ const faqs = [
     },
     {
         question: "Where do the reviews get posted?",
-        answer: "Reviews are posted directly to your Google Business Profile. The one-click posting removes friction and makes it easy for customers to complete the review.",
+        answer: "Reviews are posted directly to your Google Business Profile, helping you rank higher on Google Maps and local search.",
     },
     {
         question: "How quickly can I start collecting reviews?",
@@ -130,62 +130,66 @@ const staggerContainer = {
 export function AIReviewAnimatedContent({ products }: AIReviewAnimatedContentProps) {
     return (
       <div className="overflow-x-hidden" style={{ backgroundColor: "#F4F4F4" }}>
-        {/* Hero */}
-        <section className="px-[6px] pb-0">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] overflow-hidden rounded-b-[10px]"
-          >
-            {/* Banner Background */}
-            <div className="absolute inset-0 h-full w-full">
-              {/* <video
-                className="absolute inset-0 h-full w-full object-cover"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-              >
-                <source
-                  src="https://res.cloudinary.com/dem0bqs8e/video/upload/v1770398448/copy_2E63D710-593B-4DD1-9A1A-C8BB3E8880B3_fn54bl_tm3iwh.mp4"
-                  type="video/mp4"
-                />
-              </video> */}
-              <img
-                src="https://souhaygiitgemoplvwnl.supabase.co/storage/v1/object/public/other%20images/IMG_0303_e6l9fd.jpg" // Placeholder path, user will add the real image later
-                alt="AI Review Card Banner"
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <div className="bg-black absolute inset-0 opacity-50" />
-
-            <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 sm:px-6">
-              {/* <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white max-w-xs sm:max-w-lg md:max-w-2xl"
-              >
-                Turn customer visits into powerful reviews.
-              </motion.h1> */}
-
-              {/* <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                <Link
-                  href="#how-it-works"
-                  className="mt-5 sm:mt-6 md:mt-8 inline-block rounded-[10px] bg-white px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-zinc-900 hover:bg-zinc-100 transition-colors"
+         {/* Hero - Same style as homepage and AI Review */}
+            <section className="px-[6px] pb-0">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6 }}
+                    className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] overflow-hidden rounded-b-[10px]"
                 >
-                  See How It Works
-                </Link>
-              </motion.div> */}
-            </div>
-          </motion.div>
-        </section>
+                    {/* Background Image */}
+                    <div
+                        className="absolute inset-0 bg-cover bg-center"
+                        style={{
+                            backgroundImage: `url('https://souhaygiitgemoplvwnl.supabase.co/storage/v1/object/public/other%20images/IMG_0303_e6l9fd.jpg')`,
+                        }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/90 to-black/40" />
+
+                    {/* Content */}
+                    <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 sm:px-6">
+                       
+
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            className="mt-3 sm:mt-4 text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white max-w-xs sm:max-w-lg md:max-w-3xl"
+                        >
+                            Stop Losing Customers — Get More Google Reviews with AI
+                        </motion.h1>
+                         <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-center mt-4 text-xs sm:text-sm md:text-base text-white/70 max-w-xs sm:max-w-md md:max-w-2xl"
+                        >
+                            The Old Way / The AI Way" Section Heading : Why Traditional Reviews Don't Work
+                        </motion.p>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5 }}
+                            className="mt-5 sm:mt-6 md:mt-8 flex flex-wrap justify-center gap-3"
+                        >
+                            <Link
+                                href="/shop"
+                                className="rounded-[10px] bg-white px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-zinc-900 hover:bg-zinc-100 transition-colors"
+                            >
+                                Shop Now
+                            </Link>
+                            <Link
+                                href="/book-demo"
+                                className="rounded-[10px] bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white hover:bg-white/20 transition-colors"
+                            >
+                                Book a Demo
+                            </Link>
+                        </motion.div>
+                    </div>
+                </motion.div>
+            </section>
 
         {/* Problem vs Solution - Redesigned */}
         <section className="py-12 sm:py-16 lg:py-20">
@@ -437,7 +441,8 @@ export function AIReviewAnimatedContent({ products }: AIReviewAnimatedContentPro
                 FAQ
               </span>
               <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-black tracking-tighter">
-                Questions? <span className="text-zinc-400">Answered.</span>
+                Frequently Asked Questions <span className="text-zinc-400">- NFC Cards India
+.</span>
               </h2>
             </motion.div>
 
