@@ -174,12 +174,13 @@ export function Header() {
                         )}
                       >
                         {/* Image */}
-                        <div className="overflow-hidden rounded-[10px]">
-                          <div
-                            className="aspect-[1/1] bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
-                            style={{
-                              backgroundImage: `url(${category.image})`,
-                            }}
+                        <div className="relative aspect-[1/1] overflow-hidden rounded-[10px]">
+                          <Image
+                            src={category.image}
+                            alt={category.name}
+                            fill
+                            sizes="200px"
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                         </div>
 

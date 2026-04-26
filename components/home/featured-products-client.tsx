@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
@@ -194,9 +195,13 @@ function PromoCard() {
     return (
         <div className="relative w-full h-full overflow-hidden rounded-[20px]">
             {/* Background Image */}
-            <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('/PROMOCARDBG.png')" }}
+            <Image
+                src="/PROMOCARDBG.png"
+                alt=""
+                fill
+                sizes="(max-width: 640px) 85vw, 320px"
+                className="object-cover"
+                loading="lazy"
             />
 
             {/* Overlay */}

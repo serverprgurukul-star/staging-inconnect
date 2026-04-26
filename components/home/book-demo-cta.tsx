@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Calendar, Sparkles } from "lucide-react";
 import { motion, Variants } from "framer-motion";
@@ -27,8 +28,14 @@ export function BookDemoCTA() {
                 >
                     {/* Creative Background: Adaptive for Tablet/Mobile */}
                     <div className="absolute inset-0 z-0">
-                        {/* The background image is set to cover to ensure it matches width perfectly */}
-                        <div className="absolute inset-0 bg-[url('/footerheroctabg.png')] bg-cover bg-center opacity-40 mix-blend-overlay scale-105 group-hover:scale-100 transition-transform duration-1000" />
+                        <Image
+                            src="/footerheroctabg.png"
+                            alt=""
+                            fill
+                            sizes="95vw"
+                            className="object-cover opacity-40 mix-blend-overlay scale-105 group-hover:scale-100 transition-transform duration-1000"
+                            loading="lazy"
+                        />
 
                         {/* Pulsing Glow - Centered for all screen sizes */}
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[60%] md:w-[60%] bg-sky-500/30 rounded-[10px] blur-[80px] md:blur-[120px] animate-pulse pointer-events-none" />

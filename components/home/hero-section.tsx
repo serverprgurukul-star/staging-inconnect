@@ -1,7 +1,4 @@
-"use client";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import Link from "next/link";
 
 export function HeroSection() {
   return (
@@ -37,23 +34,13 @@ export function HeroSection() {
 
         {/* Content */}
         <div className="relative z-10  flex h-full flex-col items-center justify-center px-4 sm:px-6">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mt-3  sm:mt-4 text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white max-w-xs sm:max-w-lg md:max-w-3xl"
-          >
+          <h1 className="mt-3 sm:mt-4 text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white max-w-xs sm:max-w-lg md:max-w-3xl">
             India's #1 NFC Business Card — Share Your Profile in One Tap
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-center mt-4 mb-1 md:mb-18 text-xs sm:text-sm md:text-base text-white/70 max-w-xs sm:max-w-md md:max-w-3xl"
-          >
+          </h1>
+          <p className="text-center mt-4 mb-1 md:mb-18 text-xs sm:text-sm md:text-base text-white/70 max-w-xs sm:max-w-md md:max-w-3xl">
             Buy NFC smart cards, AI review cards & digital standees. No app
             needed. Works on all phones. Free shipping across India.
-          </motion.p>
+          </p>
 
           {/* <motion.div
                             initial={{ opacity: 0, y: 20 }}

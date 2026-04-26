@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -88,12 +89,9 @@ export function CategoryBlocks() {
                                     </span>
                                 </div>
                             </div>
-                            <div
-                                className="absolute right-0 top-1/2 -translate-y-1/2 sm:top-auto sm:bottom-0 sm:translate-y-0 w-[45%] sm:w-[50%] lg:w-1/2 h-[80%] sm:h-[85%] lg:h-4/5 bg-contain bg-center sm:bg-right-bottom bg-no-repeat transition-transform duration-700 hover:scale-110 hover:-rotate-2"
-                                style={{
-                                    backgroundImage: `url('${categories[0].image}')`,
-                                }}
-                            />
+                            <div className="absolute right-0 top-1/2 -translate-y-1/2 sm:top-auto sm:bottom-0 sm:translate-y-0 w-[45%] sm:w-[50%] lg:w-1/2 h-[80%] sm:h-[85%] lg:h-4/5 transition-transform duration-700 hover:scale-110 hover:-rotate-2">
+                                <Image src={categories[0].image} alt={categories[0].name} fill sizes="(max-width: 640px) 45vw, (max-width: 1024px) 50vw, 25vw" className="object-contain object-center sm:object-right-bottom" />
+                            </div>
                         </Link>
                     </motion.div>
 
@@ -104,12 +102,9 @@ export function CategoryBlocks() {
                             prefetch={false}
                             className={`group relative flex flex-col justify-end overflow-hidden rounded-[10px] ${categories[1].bgColor} p-5 sm:p-5 lg:p-10 min-h-[180px] sm:min-h-[220px] lg:min-h-[400px] transition-all hover:shadow-2xl hover:shadow-orange-500/20`}
                         >
-                            <div
-                                className="absolute right-2 top-1/2 -translate-y-1/2 md:-top-8 md:translate-y-0 2xl:top-auto 2xl:bottom-16 w-[48%] sm:w-[42%] lg:w-[60%] 2xl:w-[90%] h-[72%] sm:h-[60%] lg:h-[66%] 2xl:h-[60%] bg-contain bg-center md:bg-right-top 2xl:bg-right bg-no-repeat transition-transform duration-700 group-hover:scale-110"
-                                style={{
-                                    backgroundImage: `url('${categories[1].image}')`,
-                                }}
-                            />
+                            <div className="absolute right-2 top-1/2 -translate-y-1/2 md:-top-8 md:translate-y-0 2xl:top-auto 2xl:bottom-16 w-[48%] sm:w-[42%] lg:w-[60%] 2xl:w-[90%] h-[72%] sm:h-[60%] lg:h-[66%] 2xl:h-[60%] transition-transform duration-700 group-hover:scale-110">
+                                <Image src={categories[1].image} alt={categories[1].name} fill sizes="(max-width: 640px) 48vw, (max-width: 1024px) 42vw, 30vw" className="object-contain object-center md:object-right-top" />
+                            </div>
                             <div className="relative z-10 max-w-[55%] sm:max-w-[60%] lg:max-w-none">
                                 <p className="text-white/90 font-black text-[9px] sm:text-[9px] lg:text-xs uppercase tracking-[0.15em] lg:tracking-[0.2em] mb-1 lg:mb-3">
                                     {categories[1].tagline}
@@ -133,12 +128,9 @@ export function CategoryBlocks() {
                             prefetch={false}
                             className={`group relative flex flex-col justify-end overflow-hidden rounded-[10px] ${categories[2].bgColor} p-5 sm:p-5 lg:p-10 min-h-[180px] sm:min-h-[220px] lg:min-h-[400px] transition-all hover:shadow-2xl hover:shadow-yellow-500/20`}
                         >
-                            <div
-                                className="absolute right-2 top-1/2 -translate-y-1/2 md:-top-4 md:translate-y-0 2xl:top-auto 2xl:bottom-12 w-[48%] sm:w-[36%] lg:w-[54%] 2xl:w-[80%] h-[72%] sm:h-[60%] lg:h-[66%] 2xl:h-[60%] bg-contain bg-center md:bg-right-top 2xl:bg-right bg-no-repeat transition-transform duration-700 group-hover:scale-110"
-                                style={{
-                                    backgroundImage: `url('${categories[2].image}')`,
-                                }}
-                            />
+                            <div className="absolute right-2 top-1/2 -translate-y-1/2 md:-top-4 md:translate-y-0 2xl:top-auto 2xl:bottom-12 w-[48%] sm:w-[36%] lg:w-[54%] 2xl:w-[80%] h-[72%] sm:h-[60%] lg:h-[66%] 2xl:h-[60%] transition-transform duration-700 group-hover:scale-110">
+                                <Image src={categories[2].image} alt={categories[2].name} fill sizes="(max-width: 640px) 48vw, (max-width: 1024px) 36vw, 27vw" className="object-contain object-center md:object-right-top" />
+                            </div>
                             <div className="relative z-10 max-w-[55%] sm:max-w-[65%] lg:max-w-none">
                                 <p className="text-white font-black text-[9px] sm:text-[9px] lg:text-xs uppercase tracking-[0.15em] lg:tracking-[0.2em] mb-1 lg:mb-3">
                                     {categories[2].tagline}
@@ -175,12 +167,9 @@ export function CategoryBlocks() {
                                     </span>
                                 </div>
                             </div>
-                            <div
-                                className="absolute right-0 top-1/2 -translate-y-1/2 sm:top-auto sm:bottom-0 sm:translate-y-0 w-[45%] sm:w-[50%] lg:w-1/2 h-[80%] sm:h-[75%] lg:h-3/5 bg-contain bg-center sm:bg-right-bottom bg-no-repeat transition-transform duration-700 group-hover:scale-125"
-                                style={{
-                                    backgroundImage: `url('${categories[3].image}')`,
-                                }}
-                            />
+                            <div className="absolute right-0 top-1/2 -translate-y-1/2 sm:top-auto sm:bottom-0 sm:translate-y-0 w-[45%] sm:w-[50%] lg:w-1/2 h-[80%] sm:h-[75%] lg:h-3/5 transition-transform duration-700 group-hover:scale-125">
+                                <Image src={categories[3].image} alt={categories[3].name} fill sizes="(max-width: 640px) 45vw, (max-width: 1024px) 50vw, 25vw" className="object-contain object-center sm:object-right-bottom" />
+                            </div>
                         </Link>
                     </motion.div>
                 </motion.div>
