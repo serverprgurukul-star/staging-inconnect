@@ -189,6 +189,7 @@ export default function ProductPage({ params }: PageProps) {
                                                     src={image}
                                                     alt={`${product.name} ${index + 1}`}
                                                     fill
+                                                    sizes="80px"
                                                     className="object-cover"
                                                 />
                                             </button>
@@ -202,6 +203,7 @@ export default function ProductPage({ params }: PageProps) {
                                         src={images[selectedImage]}
                                         alt={product.name}
                                         fill
+                                        sizes="(max-width: 1024px) 95vw, 50vw"
                                         className="object-contain p-4 sm:p-6 lg:p-10"
                                         priority
                                     />
@@ -231,6 +233,7 @@ export default function ProductPage({ params }: PageProps) {
                                                 src={image}
                                                 alt={`${product.name} ${index + 1}`}
                                                 fill
+                                                sizes="72px"
                                                 className="object-cover"
                                             />
                                         </button>

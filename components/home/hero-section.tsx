@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -21,10 +22,13 @@ export function HeroSection() {
               type="video/mp4"
             />
           </video> */}
-          <img
-            src="https://souhaygiitgemoplvwnl.supabase.co/storage/v1/object/public/other%20images/Photo_1_pglrg1.jpg" // Placeholder path, user will add the real image later
+          <Image
+            src="https://souhaygiitgemoplvwnl.supabase.co/storage/v1/object/public/other%20images/Photo_1_pglrg1.jpg"
             alt="Instant Connect Hero Banner"
-            className="h-full w-full object-cover"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
           />
         </div>
 

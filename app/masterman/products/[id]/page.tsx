@@ -652,6 +652,7 @@ export default function ProductFormPage() {
                         src={image}
                         alt={`Product ${index + 1}`}
                         fill
+                        sizes="(max-width: 640px) 45vw, 200px"
                         className="rounded-[10px] object-cover"
                       />
                       <div className="absolute left-1 top-1 rounded bg-black/60 px-1.5 py-0.5 text-xs text-white">

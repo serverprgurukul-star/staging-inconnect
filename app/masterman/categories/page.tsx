@@ -68,6 +68,7 @@ export default function AdminCategoriesPage() {
               src={category.image_url}
               alt={category.name}
               fill
+              sizes="48px"
               className="object-cover"
             />
           ) : (

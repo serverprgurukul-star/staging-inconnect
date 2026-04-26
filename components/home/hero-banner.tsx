@@ -136,6 +136,7 @@ export function HeroBanner() {
                 alt="AI Review Mockup"
                 fill
                 priority
+                sizes="(max-width: 768px) 320px, 450px"
                 className="object-contain z-10 drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
               />
             </div>

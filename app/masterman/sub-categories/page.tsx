@@ -68,6 +68,7 @@ export default function AdminSubCategoriesPage() {
               src={subCategory.image_url}
               alt={subCategory.name}
               fill
+              sizes="48px"
               className="object-cover"
             />
           ) : (

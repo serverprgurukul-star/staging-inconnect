@@ -80,6 +80,7 @@ export function TestimonialsSectionClient({ testimonials }: TestimonialsSectionC
                                 src={testimonial.image_url || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop"}
                                 alt={testimonial.name}
                                 fill
+                                sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 31vw"
                                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                             />
 

@@ -570,6 +570,7 @@ export default function AdminDashboardPage() {
                                                     src={product.images[0]}
                                                     alt={product.name}
                                                     fill
+                                                    sizes="40px"
                                                     className="object-cover"
                                                 />
                                             ) : (

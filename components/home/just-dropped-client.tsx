@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
@@ -137,11 +138,12 @@ export function JustDroppedClient({ heroProduct, products }: JustDroppedClientPr
                                 <source src={mainProduct.hero_video_url!} type="video/mp4" />
                             </video>
                         ) : (
-                            <div
-                                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                                style={{
-                                    backgroundImage: `url('${mainProduct.images[0] || "/placeholder-product.jpg"}')`,
-                                }}
+                            <Image
+                                src={mainProduct.images[0] || "/placeholder-product.jpg"}
+                                alt={mainProduct.name}
+                                fill
+                                sizes="(max-width: 640px) 95vw, (max-width: 1024px) 50vw, 50vw"
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
                             />
                         )}
                         {/* Gradient overlay */}

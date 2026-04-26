@@ -100,8 +100,8 @@ export function ProductCard({ product, categorySlug, noBg, tag }: ProductCardPro
                                     ? "opacity-100 scale-100"
                                     : "opacity-0 scale-105"
                             }`}
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                            priority={index === 0}
+                            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                            loading={index === 0 ? "eager" : "lazy"}
                         />
                     ))}
 

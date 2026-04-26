@@ -69,6 +69,7 @@ export default function AdminTestimonialsPage() {
               src={testimonial.image_url}
               alt={testimonial.name}
               fill
+              sizes="40px"
               className="object-cover"
             />
           ) : (
