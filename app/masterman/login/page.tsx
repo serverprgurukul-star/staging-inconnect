@@ -57,6 +57,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-md">
         {/* Back to Home */}
         <Link
+          prefetch={false}
           href="/"
           className="mb-6 inline-flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-900"
         >

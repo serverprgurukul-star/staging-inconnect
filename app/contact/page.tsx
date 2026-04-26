@@ -341,6 +341,7 @@ export default function ContactPage() {
                                 </h3>
                                 <div className="mt-3 space-y-2">
                                     <Link
+                                      prefetch={false}
                                         href="/faqs"
                                         className="flex items-center gap-3 rounded-[10px] bg-zinc-50 p-3 text-xs sm:text-sm font-medium text-zinc-700 hover:bg-zinc-100"
                                     >
@@ -348,6 +349,7 @@ export default function ContactPage() {
                                         Browse FAQs
                                     </Link>
                                     <Link
+                                      prefetch={false}
                                         href="/track-order"
                                         className="flex items-center gap-3 rounded-[10px] bg-zinc-50 p-3 text-xs sm:text-sm font-medium text-zinc-700 hover:bg-zinc-100"
                                     >
@@ -355,6 +357,7 @@ export default function ContactPage() {
                                         Track Your Order
                                     </Link>
                                     <Link
+                                      prefetch={false}
                                         href="/book-demo"
                                         className="flex items-center gap-3 rounded-[10px] bg-zinc-50 p-3 text-xs sm:text-sm font-medium text-zinc-700 hover:bg-zinc-100"
                                     >

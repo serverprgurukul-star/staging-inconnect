@@ -68,7 +68,7 @@ export function ShopProductCard({ product }: ShopProductCardProps) {
 
     return (
         <div className="group">
-            <Link href={`/product/${product.slug}`}>
+            <Link prefetch={false} href={`/product/${product.slug}`}>
                 <div
                     className="relative aspect-square overflow-hidden rounded-[10px] bg-white"
                     onMouseEnter={() => setIsHovered(true)}

@@ -151,6 +151,7 @@ export default function OrderDetailPage() {
       <div className="flex items-start justify-between">
         <div>
           <Link
+            prefetch={false}
             href="/masterman/orders"
             className="inline-flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-900"
           >

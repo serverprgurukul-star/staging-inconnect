@@ -90,6 +90,7 @@ export default function ShippingPolicyPage() {
                             Already placed an order? Track its status here.
                         </p>
                         <Link
+                          prefetch={false}
                             href="/track-order"
                             className="mt-4 inline-block rounded-[10px] bg-white px-6 py-3 text-sm font-semibold text-blue-600 hover:bg-blue-50"
                         >

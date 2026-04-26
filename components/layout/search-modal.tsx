@@ -199,6 +199,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                             <div className="space-y-2">
                                 {products.map((product) => (
                                     <Link
+                                      prefetch={false}
                                         key={product.id}
                                         href={`/product/${product.slug}`}
                                         onClick={handleProductClick}
@@ -241,6 +242,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                 ))}
                             </div>
                             <Link
+                              prefetch={false}
                                 href={`/shop?search=${encodeURIComponent(query)}`}
                                 onClick={handleProductClick}
                                 className="mt-4 flex items-center justify-center gap-2 rounded-[10px] bg-zinc-100 py-3 text-sm font-medium text-zinc-700 hover:bg-zinc-200"
@@ -306,6 +308,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                 <div className="grid gap-2 sm:grid-cols-2">
                                     {categories.map((category) => (
                                         <Link
+                                          prefetch={false}
                                             key={category.id}
                                             href={`/shop?category=${category.slug}`}
                                             onClick={onClose}
@@ -341,6 +344,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                 </p>
                                 <div className="flex flex-wrap gap-2">
                                     <Link
+                                      prefetch={false}
                                         href="/shop"
                                         onClick={onClose}
                                         className="rounded-[10px] border border-zinc-200 px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50"
@@ -348,6 +352,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                         All Products
                                     </Link>
                                     <Link
+                                      prefetch={false}
                                         href="/how-it-works"
                                         onClick={onClose}
                                         className="rounded-[10px] border border-zinc-200 px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50"
@@ -355,6 +360,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                         How It Works
                                     </Link>
                                     <Link
+                                      prefetch={false}
                                         href="/faqs"
                                         onClick={onClose}
                                         className="rounded-[10px] border border-zinc-200 px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50"
@@ -362,6 +368,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                         FAQs
                                     </Link>
                                     <Link
+                                      prefetch={false}
                                         href="/contact"
                                         onClick={onClose}
                                         className="rounded-[10px] border border-zinc-200 px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50"

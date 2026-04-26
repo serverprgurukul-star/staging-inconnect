@@ -44,6 +44,7 @@ function OrderSuccessContent() {
                         Please check your order confirmation email.
                     </p>
                     <Link
+                      prefetch={false}
                         href="/"
                         className="mt-5 sm:mt-6 rounded-[10px] bg-zinc-900 px-6 py-3 text-sm font-semibold text-white hover:bg-zinc-800"
                     >
@@ -187,6 +188,7 @@ function OrderSuccessContent() {
                             <div className="rounded-[10px] bg-white p-5">
                                 <div className="space-y-3">
                                     <Link
+                                      prefetch={false}
                                         href={`/track-order?order=${orderNumber}`}
                                         className="flex w-full items-center justify-between rounded-[10px] bg-black px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-800"
                                     >
@@ -194,6 +196,7 @@ function OrderSuccessContent() {
                                         <ArrowRight className="h-4 w-4" />
                                     </Link>
                                     <Link
+                                      prefetch={false}
                                         href="/shop"
                                         className="flex w-full items-center justify-center rounded-[10px] border border-zinc-200 px-4 py-3 text-sm font-medium text-zinc-700 hover:bg-zinc-50"
                                     >

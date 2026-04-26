@@ -460,6 +460,7 @@ export default function TrackOrderPage() {
                                                 here to help.
                                             </p>
                                             <Link
+                                              prefetch={false}
                                                 href="/contact"
                                                 className="mt-4 inline-flex items-center gap-2 rounded-[10px] bg-black/20 px-4 py-2.5 text-xs sm:text-sm font-semibold text-black hover:bg-black/30"
                                             >
@@ -483,6 +484,7 @@ export default function TrackOrderPage() {
                                     number. Please check and try again.
                                 </p>
                                 <Link
+                                  prefetch={false}
                                     href="/contact"
                                     className="mt-6 inline-flex items-center gap-2 rounded-[10px] bg-zinc-900 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white hover:bg-zinc-800"
                                 >
@@ -582,6 +584,7 @@ export default function TrackOrderPage() {
                                     </div>
                                 </div>
                                 <Link
+                                  prefetch={false}
                                     href="/faqs"
                                     className="mt-5 inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-blue-600 hover:text-blue-700"
                                 >
@@ -627,6 +630,7 @@ export default function TrackOrderPage() {
                                     </div>
                                 </div>
                                 <Link
+                                  prefetch={false}
                                     href="/contact"
                                     className="mt-5 sm:mt-6 inline-block rounded-[10px] bg-white px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-blue-600 hover:bg-blue-50"
                                 >
@@ -656,12 +660,14 @@ export default function TrackOrderPage() {
                             </p>
                             <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row gap-3 justify-center">
                                 <Link
+                                  prefetch={false}
                                     href="/shop"
                                     className="rounded-[10px] bg-black px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white hover:bg-black/90"
                                 >
                                     Shop Now
                                 </Link>
                                 <Link
+                                  prefetch={false}
                                     href="/book-demo"
                                     className="rounded-[10px] bg-black/20 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-black hover:bg-black/30"
                                 >

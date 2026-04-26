@@ -133,6 +133,7 @@ export default function AdminTestimonialsPage() {
       render: (testimonial: Testimonial) => (
         <div className="flex items-center gap-2">
           <Link
+            prefetch={false}
             href={`/masterman/testimonials/${testimonial.id}`}
             className="rounded-[10px] p-2 hover:bg-zinc-100"
           >

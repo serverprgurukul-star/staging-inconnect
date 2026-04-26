@@ -125,12 +125,14 @@ export default function AboutPage() {
                         </p>
                         <div className="mt-5 sm:mt-6 md:mt-8 flex flex-col sm:flex-row gap-3">
                             <Link
+                              prefetch={false}
                                 href="/shop"
                                 className="rounded-[10px] bg-white px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-zinc-900 hover:bg-zinc-100"
                             >
                                 Shop Now
                             </Link>
                             <Link
+                              prefetch={false}
                                 href="/contact"
                                 className="rounded-[10px] bg-white/20 backdrop-blur-sm px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white hover:bg-white/30"
                             >

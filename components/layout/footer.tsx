@@ -128,6 +128,7 @@ export function Footer() {
                                 </li>
                                 {/* <li>
                                     <Link
+                                      prefetch={false}
                                         href="/privacy"
                                         className="text-sm font-bold text-zinc-600 hover:text-sky-600 transition-colors"
                                     >
@@ -136,6 +137,7 @@ export function Footer() {
                                 </li>
                                 <li>
                                     <Link
+                                      prefetch={false}
                                         href="/refund"
                                         className="text-sm font-bold text-zinc-600 hover:text-sky-600 transition-colors"
                                     >
@@ -144,6 +146,7 @@ export function Footer() {
                                 </li>
                                 <li>
                                     <Link
+                                      prefetch={false}
                                         href="/terms"
                                         className="text-sm font-bold text-zinc-600 hover:text-sky-600 transition-colors"
                                     >
@@ -218,6 +221,7 @@ function FooterColumn({ title, links }: { title: string; links: string[] }) {
                 {links.map((link) => (
                     <li key={link}>
                         <Link
+                          prefetch={false}
                             href="#"
                             className="text-xs font-bold hover:text-[#FF8026] transition-colors"
                         >

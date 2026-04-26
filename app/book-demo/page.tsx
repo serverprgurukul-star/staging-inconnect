@@ -121,6 +121,7 @@ export default function BookDemoPage() {
                         </p>
                         <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
                             <Link
+                              prefetch={false}
                                 href="/shop"
                                 className="inline-flex items-center justify-center gap-2 rounded-[10px] bg-zinc-900 px-6 py-3 text-sm font-semibold text-white hover:bg-zinc-800"
                             >
@@ -128,6 +129,7 @@ export default function BookDemoPage() {
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
                             <Link
+                              prefetch={false}
                                 href="/"
                                 className="inline-flex items-center justify-center gap-2 rounded-[10px] bg-zinc-200 px-6 py-3 text-sm font-semibold text-zinc-700 hover:bg-zinc-300"
                             >

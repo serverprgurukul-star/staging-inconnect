@@ -116,6 +116,7 @@ export default function FAQsPage() {
                                 questions you may have.
                             </p>
                             <Link
+                              prefetch={false}
                                 href="/contact"
                                 className="mt-5 sm:mt-6 inline-block rounded-[10px] bg-white px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-blue-600 hover:bg-blue-50"
                             >
@@ -136,6 +137,7 @@ export default function FAQsPage() {
                                 personalized demonstration.
                             </p>
                             <Link
+                              prefetch={false}
                                 href="/book-demo"
                                 className="mt-5 sm:mt-6 inline-block rounded-[10px] bg-black px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white hover:bg-black/90"
                             >

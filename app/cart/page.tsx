@@ -61,6 +61,7 @@ export default function CartPage() {
                         yet.
                     </p>
                     <Link
+                      prefetch={false}
                         href="/shop"
                         className="mt-6 rounded-[10px] px-6 py-3 text-sm font-semibold text-white"
                         style={{ backgroundColor: "#38bdf8" }}
@@ -79,7 +80,7 @@ export default function CartPage() {
                 <div className="mx-auto w-[95%]">
                     {/* Breadcrumb */}
                     <nav className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-zinc-500 mb-3 sm:mb-4">
-                        <Link href="/" className="hover:text-zinc-700">
+                        <Link prefetch={false} href="/" className="hover:text-zinc-700">
                             <Home className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                         </Link>
                         <span>/</span>
@@ -109,6 +110,7 @@ export default function CartPage() {
                                 >
                                     {/* Product Image */}
                                     <Link
+                                      prefetch={false}
                                         href={`/product/${item.slug}`}
                                         className="relative h-20 w-20 sm:h-28 sm:w-28 flex-shrink-0 overflow-hidden rounded-[10px] bg-zinc-100"
                                     >
@@ -128,6 +130,7 @@ export default function CartPage() {
                                         <div className="flex justify-between gap-2">
                                             <div className="min-w-0">
                                                 <Link
+                                                  prefetch={false}
                                                     href={`/product/${item.slug}`}
                                                     className="font-medium text-sm sm:text-base text-zinc-900 hover:text-zinc-700 line-clamp-2"
                                                 >
@@ -313,6 +316,7 @@ export default function CartPage() {
 
                                 {/* Checkout Button */}
                                 <Link
+                                  prefetch={false}
                                     href="/checkout"
                                     className="mt-5 flex w-full items-center justify-center gap-2 rounded-[10px] py-3.5 text-sm font-semibold text-white"
                                     style={{ backgroundColor: "#38bdf8" }}
@@ -323,6 +327,7 @@ export default function CartPage() {
 
                                 {/* Continue Shopping */}
                                 <Link
+                                  prefetch={false}
                                     href="/shop"
                                     className="mt-3 flex w-full items-center justify-center rounded-[10px] border border-zinc-200 py-3 text-sm font-medium text-zinc-700 hover:bg-zinc-50"
                                 >
@@ -362,6 +367,7 @@ export default function CartPage() {
                     )}
                 </div>
                 <Link
+                  prefetch={false}
                     href="/checkout"
                     className="flex w-full items-center justify-center gap-2 rounded-[10px] py-3.5 text-sm font-semibold text-white active:opacity-90"
                     style={{ backgroundColor: "#38bdf8" }}

@@ -133,6 +133,7 @@ export default function AdminSubCategoriesPage() {
       render: (subCategory: SubCategoryWithCategory) => (
         <div className="flex items-center gap-2">
           <Link
+            prefetch={false}
             href={`/masterman/sub-categories/${subCategory.id}`}
             className="rounded-[10px] p-2 hover:bg-zinc-100"
           >

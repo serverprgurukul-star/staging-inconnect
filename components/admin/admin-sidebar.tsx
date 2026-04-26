@@ -91,7 +91,7 @@ export function AdminSidebar({ isCollapsed, onToggle, isMobileOpen, onMobileClos
           isCollapsed ? 'justify-center' : 'justify-between'
         )}>
           {(!isCollapsed || isMobileOpen) && (
-            <Link href="/masterman" className="flex items-center gap-2" onClick={handleNavClick}>
+            <Link prefetch={false} href="/masterman" className="flex items-center gap-2" onClick={handleNavClick}>
               <div className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-zinc-900 text-xs font-bold text-white">
                 IC
               </div>
@@ -155,6 +155,7 @@ export function AdminSidebar({ isCollapsed, onToggle, isMobileOpen, onMobileClos
         {/* Footer */}
         <div className="border-t border-zinc-200 p-3 space-y-1">
           <Link
+            prefetch={false}
             href="/"
             target="_blank"
             className={cn(

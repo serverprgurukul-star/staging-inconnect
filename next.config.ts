@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'souhaygiitgemoplvwnl.supabase.co',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.pinimg.com',
+      },
     ],
     dangerouslyAllowSVG: true,
     formats: ['image/webp'],

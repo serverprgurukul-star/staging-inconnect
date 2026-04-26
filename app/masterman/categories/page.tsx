@@ -124,6 +124,7 @@ export default function AdminCategoriesPage() {
       render: (category: Category) => (
         <div className="flex items-center gap-2">
           <Link
+            prefetch={false}
             href={`/masterman/categories/${category.id}`}
             className="rounded-[10px] p-2 hover:bg-zinc-100"
           >

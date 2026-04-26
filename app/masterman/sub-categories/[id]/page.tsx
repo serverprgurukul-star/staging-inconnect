@@ -183,6 +183,7 @@ export default function SubCategoryFormPage() {
       {/* Header */}
       <div>
         <Link
+          prefetch={false}
           href="/masterman/sub-categories"
           className="inline-flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-900"
         >

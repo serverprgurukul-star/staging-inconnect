@@ -49,12 +49,14 @@ export function HeroSection() {
                             className="mt-5 sm:mt-6 md:mt-8 flex flex-wrap justify-center gap-3"
                         >
                             <Link
+                              prefetch={false}
                                 href="/shop"
                                 className="rounded-[10px] bg-white px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-zinc-900 hover:bg-zinc-100 transition-colors"
                             >
                                 Shop Now
                             </Link>
                             <Link
+                              prefetch={false}
                                 href="/book-demo"
                                 className="rounded-[10px] bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white hover:bg-white/20 transition-colors"
                             >

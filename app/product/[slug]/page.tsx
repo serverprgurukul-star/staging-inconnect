@@ -246,13 +246,14 @@ export default function ProductPage({ params }: PageProps) {
                         <div className="mt-2 sm:mt-0 lg:pt-4">
                             {/* Breadcrumb */}
                             <nav className="hidden sm:flex items-center gap-2 text-sm text-zinc-500">
-                                <Link href="/" className="hover:text-zinc-700">
+                                <Link prefetch={false} href="/" className="hover:text-zinc-700">
                                     <Home className="h-4 w-4" />
                                 </Link>
                                 {category && (
                                     <>
                                         <span className="text-zinc-300">/</span>
                                         <Link
+                                          prefetch={false}
                                             href={`/shop?category=${category.slug}`}
                                             className="hover:text-zinc-700"
                                         >
@@ -268,13 +269,14 @@ export default function ProductPage({ params }: PageProps) {
 
                             {/* Mobile Breadcrumb (Simplified) */}
                             <nav className="flex sm:hidden items-center gap-1.5 text-xs text-zinc-500 mb-2">
-                                <Link href="/" className="hover:text-zinc-700">
+                                <Link prefetch={false} href="/" className="hover:text-zinc-700">
                                     <Home className="h-3.5 w-3.5" />
                                 </Link>
                                 {category && (
                                     <>
                                         <span>/</span>
                                         <Link
+                                          prefetch={false}
                                             href={`/shop?category=${category.slug}`}
                                             className="hover:text-zinc-700"
                                         >
@@ -474,6 +476,7 @@ export default function ProductPage({ params }: PageProps) {
                             </h2>
                             {category && (
                                 <Link
+                                  prefetch={false}
                                     href={`/shop?category=${category.slug}`}
                                     className="text-xs sm:text-sm font-medium hover:underline"
                                     style={{ color: "#38bdf8" }}

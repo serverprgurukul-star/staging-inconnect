@@ -192,6 +192,7 @@ export function CartDrawer() {
                                     <div className="flex gap-3 sm:gap-4">
                                         {/* Product Image */}
                                         <Link
+                                          prefetch={false}
                                             href={`/product/${item.slug}`}
                                             onClick={closeCart}
                                             className="relative h-20 w-20 sm:h-24 sm:w-24 flex-shrink-0 overflow-hidden rounded-[10px] bg-zinc-100"
@@ -211,6 +212,7 @@ export function CartDrawer() {
                                         <div className="flex flex-1 flex-col min-w-0">
                                             <div className="flex items-start justify-between gap-2">
                                                 <Link
+                                                  prefetch={false}
                                                     href={`/product/${item.slug}`}
                                                     onClick={closeCart}
                                                     className="font-medium text-sm sm:text-base text-zinc-900 hover:text-zinc-700 line-clamp-2"
@@ -352,6 +354,7 @@ export function CartDrawer() {
                         {/* Actions */}
                         <div className="mt-4 space-y-2 sm:space-y-3">
                             <Link
+                              prefetch={false}
                                 href="/checkout"
                                 onClick={closeCart}
                                 className="flex w-full items-center justify-center gap-2 rounded-[10px] py-3.5 sm:py-4 text-sm font-semibold text-white active:opacity-90"
@@ -361,6 +364,7 @@ export function CartDrawer() {
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
                             <Link
+                              prefetch={false}
                                 href="/cart"
                                 onClick={closeCart}
                                 className="flex w-full items-center justify-center rounded-[10px] border border-zinc-200 py-3 text-sm font-medium text-zinc-700 hover:bg-zinc-50 active:bg-zinc-100"

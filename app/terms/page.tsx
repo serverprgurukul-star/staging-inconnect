@@ -243,12 +243,14 @@ export default function TermsPage() {
                             </div>
                             <div className="flex flex-col sm:flex-row gap-3">
                                 <Link
+                                  prefetch={false}
                                     href="/contact"
                                     className="rounded-[10px] bg-white px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-blue-600 hover:bg-blue-50 text-center"
                                 >
                                     Contact Us
                                 </Link>
                                 <Link
+                                  prefetch={false}
                                     href="/faqs"
                                     className="rounded-[10px] bg-white/20 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white hover:bg-white/30 text-center"
                                 >

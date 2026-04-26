@@ -363,6 +363,7 @@ export default function FraudulentWebsitesPage() {
                         </p>
                         <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row gap-3 justify-center">
                             <Link
+                              prefetch={false}
                                 href="/contact"
                                 className="rounded-[10px] bg-black px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white hover:bg-black/90"
                             >

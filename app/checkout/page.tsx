@@ -471,6 +471,7 @@ export default function CheckoutPage() {
                         Add some products to checkout.
                     </p>
                     <Link
+                      prefetch={false}
                         href="/shop"
                         className="mt-6 rounded-[10px] px-6 py-3 text-sm font-semibold text-white"
                         style={{ backgroundColor: "#38bdf8" }}
@@ -497,11 +498,11 @@ export default function CheckoutPage() {
                     <div className="mx-auto w-[95%]">
                         {/* Breadcrumb */}
                         <nav className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-zinc-500 mb-4 sm:mb-6">
-                            <Link href="/" className="hover:text-zinc-700">
+                            <Link prefetch={false} href="/" className="hover:text-zinc-700">
                                 <Home className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                             </Link>
                             <span>/</span>
-                            <Link href="/cart" className="hover:text-zinc-700">
+                            <Link prefetch={false} href="/cart" className="hover:text-zinc-700">
                                 Cart
                             </Link>
                             <span>/</span>

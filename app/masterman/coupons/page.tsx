@@ -116,6 +116,7 @@ export default function AdminCouponsPage() {
       render: (coupon: Coupon) => (
         <div className="flex items-center gap-2">
           <Link
+            prefetch={false}
             href={`/masterman/coupons/${coupon.id}`}
             className="rounded-[10px] p-2 hover:bg-zinc-100"
           >
