@@ -73,7 +73,7 @@ export function Header() {
           {/* ================= DESKTOP ================= */}
           <div className="hidden lg:flex h-20 items-center justify-between rounded-[10px] bg-white px-5 shadow-md">
             {/* Logo */}
-            <Link href="/">
+            <Link href="/" prefetch={false}>
               <Image
                 src="/Logo_3.svg"
                 alt="Instant Connect"
@@ -132,7 +132,7 @@ export function Header() {
               <button onClick={() => setSearchOpen(true)} className="icon-btn cursor-pointer">
                 <Search className="text-black" />
               </button>
-              <Link href="/cart" className="relative icon-btn cursor-pointer">
+              <Link href="/cart" prefetch={false} className="relative icon-btn cursor-pointer">
                 <ShoppingCart className="text-black" />
                 {itemCount > 0 && <span className="badge">{itemCount}</span>}
               </Link>
@@ -234,7 +234,7 @@ export function Header() {
               <Menu className="h-6 w-6 text-black" />
             </button>
 
-            <Link href="/">
+            <Link href="/" prefetch={false}>
               <Image
                 src="/Logo_3.svg"
                 alt="Instant Connect"
@@ -247,7 +247,7 @@ export function Header() {
               <button onClick={() => setSearchOpen(true)}>
                 <Search className="h-6 w-6 text-black" />
               </button>
-              <Link href="/cart" className="relative">
+              <Link href="/cart" prefetch={false} className="relative">
                 <ShoppingCart className="h-6 w-6 text-black" />
                 {itemCount > 0 && <span className="badge-sm">{itemCount}</span>}
               </Link>
@@ -301,6 +301,7 @@ export function Header() {
                     >
                       <Link
                         href={link.href}
+                        prefetch={false}
                         onClick={() => setMobileOpen(false)}
                         className={cn(
                           "flex items-center gap-3 rounded-[10px] px-4 py-3 text-zinc-700 font-medium transition-colors hover:bg-zinc-100",
@@ -373,6 +374,7 @@ export function Header() {
               <div className="px-4 py-4 border-t border-zinc-100">
                 <Link
                   href="/contact"
+                  prefetch={false}
                   onClick={() => setMobileOpen(false)}
                   className="flex items-center justify-center gap-2 w-full rounded-[10px] bg-zinc-900 px-4 py-3 text-white font-medium transition-colors hover:bg-zinc-800"
                 >
