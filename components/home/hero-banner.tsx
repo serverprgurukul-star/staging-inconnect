@@ -109,6 +109,7 @@ export function HeroBanner() {
             >
               <Link
                 href="/ai-review-card"
+                prefetch={false}
                 className="group relative inline-flex items-center justify-center gap-4 bg-white text-black px-8 md:px-10 py-4 md:py-5 rounded-[10px] font-black text-xs md:text-sm uppercase tracking-widest transition-all hover:bg-sky-400 hover:text-white w-full sm:w-auto"
               >
                 Start Growing

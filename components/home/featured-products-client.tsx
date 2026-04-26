@@ -106,6 +106,7 @@ export function FeaturedProductsClient({
 
                             <Link
                                 href="/shop"
+                                prefetch={false}
                                 className="inline-flex items-center gap-2 rounded-[10px] bg-zinc-900 px-5 py-2.5 text-lg md:text-lg font-medium text-white hover:bg-zinc-800"
                             >
                                 Explore all products
@@ -178,6 +179,7 @@ export function FeaturedProductsClient({
                         <div className="mt-6 flex justify-center">
                             <Link
                                 href="/shop"
+                                prefetch={false}
                                 className="inline-flex items-center gap-2 rounded-[10px] bg-zinc-900 px-6 py-3 text-base font-medium text-white"
                             >
                                 Explore all products

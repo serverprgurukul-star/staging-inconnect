@@ -80,7 +80,7 @@ export function ProductCard({ product, categorySlug, noBg, tag }: ProductCardPro
     };
 
     return (
-        <Link href={productUrl} className="block h-full">
+        <Link href={productUrl} prefetch={false} className="block h-full">
             <div
                 className="group h-full flex flex-col rounded-[10px] p-3 sm:p-4 transition"
                 style={{ background: noBg ? "#f4f4f4" : "#ebebeb" }}

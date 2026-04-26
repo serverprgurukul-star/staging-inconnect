@@ -64,6 +64,7 @@ export function BookDemoCTA() {
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
                             <Link
                                 href="/shop"
+                                prefetch={false}
                                 className="group w-full sm:w-auto flex items-center justify-center gap-3 rounded-[10px] bg-white px-8 md:px-12 py-5 text-sm md:text-md font-black text-black transition-all hover:bg-sky-400 hover:text-white hover:scale-105 active:scale-95 shadow-xl shadow-white/5"
                             >
                                 Get Started{" "}
@@ -75,6 +76,7 @@ export function BookDemoCTA() {
 
                             <Link
                                 href="/book-demo"
+                                prefetch={false}
                                 className="group w-full sm:w-auto flex items-center justify-center gap-3 rounded-[10px] bg-black/40 backdrop-blur-xl border border-white/10 px-8 md:px-12 py-5 text-sm md:text-md font-bold text-white transition-all hover:bg-white/10 hover:border-white/20"
                             >
                                 <Calendar size={18} className="text-sky-400" />{" "}

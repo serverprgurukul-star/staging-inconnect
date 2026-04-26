@@ -101,6 +101,7 @@ export function JustDroppedClient({ heroProduct, products }: JustDroppedClientPr
                     </div>
                     <Link
                         href="/shop"
+                        prefetch={false}
                         className="group flex items-center gap-3 rounded-[10px] bg-black px-8 py-4 text-sm font-black text-white transition-all hover:bg-sky-500 hover:scale-105"
                     >
                         Explore all products{" "}
@@ -123,6 +124,7 @@ export function JustDroppedClient({ heroProduct, products }: JustDroppedClientPr
                     <motion.div variants={fadeInUp} transition={{ duration: 0.5 }} className="sm:col-span-2 h-full">
                     <Link
                         href={`/product/${mainProduct.slug}`}
+                        prefetch={false}
                         className="group relative block aspect-[4/5] lg:aspect-auto h-full overflow-hidden rounded-[10px]"
                     >
                         {/* Video or Image Background */}
@@ -219,6 +221,7 @@ export function JustDroppedClient({ heroProduct, products }: JustDroppedClientPr
 
                     <Link
                         href="/shop"
+                        prefetch={false}
                         className="absolute right-0 z-20 h-full flex items-center bg-[#e62e39] px-8 text-sm font-black text-white hover:bg-white hover:text-black transition-all"
                     >
                         VIEW ALL
